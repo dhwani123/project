@@ -21,7 +21,7 @@
 </div>
 <div>
 <%= f.label :division %>
-<%= f.text_field :division %>
+<%= f.select :division, options_for_select(%w[A B C D]) %>
 </div>
 <div>
 <%= f.label :gender %>
@@ -33,7 +33,7 @@
 </div>
 <div>
 <%= f.label :bloodgroup %>
-<%= f.text_field :bloodgroup %>
+<%= f.select :bloodgroup, options_for_select(%w[O+ O- A+ A- B+ B- AB+ AB-]) %>
 </div>
 <div>
 <%= f.label :dateofjoining %>
