@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require jquery-ui-timepicker-addon.js
+$(function() {
+  $("#studentreg_dateofbirth").datepicker();
+});

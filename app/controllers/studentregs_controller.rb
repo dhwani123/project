@@ -19,7 +19,8 @@ class StudentregsController < ApplicationController
 
   def index
     @studentregs = Studentreg.all
-
+    @studentregs = Studentreg.find(:all)
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
     
     end
   end

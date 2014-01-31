@@ -1,0 +1,65 @@
+<%- model_class = Studentreg -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:firstname) %>:</strong></dt>
+  <dd><%= @studentreg.firstname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:middlename) %>:</strong></dt>
+  <dd><%= @studentreg.middlename %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:lastname) %>:</strong></dt>
+  <dd><%= @studentreg.lastname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @studentreg.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dateofbirth) %>:</strong></dt>
+  <dd><%= @studentreg.dateofbirth %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:grade) %>:</strong></dt>
+  <dd><%= @studentreg.grade %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:division) %>:</strong></dt>
+  <dd><%= @studentreg.division %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
+  <dd><%= @studentreg.gender %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:contactnumber) %>:</strong></dt>
+  <dd><%= @studentreg.contactnumber %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bloodgroup) %>:</strong></dt>
+  <dd><%= @studentreg.bloodgroup %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dateofjoining) %>:</strong></dt>
+  <dd><%= @studentreg.dateofjoining %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fname) %>:</strong></dt>
+  <dd><%= @studentreg.fname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fqualification) %>:</strong></dt>
+  <dd><%= @studentreg.fqualification %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:foccupation) %>:</strong></dt>
+  <dd><%= @studentreg.foccupation %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fincome) %>:</strong></dt>
+  <dd><%= @studentreg.fincome %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fcontactnumber) %>:</strong></dt>
+  <dd><%= @studentreg.fcontactnumber %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:femailid) %>:</strong></dt>
+  <dd><%= @studentreg.femailid %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mname) %>:</strong></dt>
+  <dd><%= @studentreg.mname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mqualification) %>:</strong></dt>
+  <dd><%= @studentreg.mqualification %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:moccupation) %>:</strong></dt>
+  <dd><%= @studentreg.moccupation %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mincome) %>:</strong></dt>
+  <dd><%= @studentreg.mincome %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mcontactnumber) %>:</strong></dt>
+  <dd><%= @studentreg.mcontactnumber %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:memailid) %>:</strong></dt>
+  <dd><%= @studentreg.memailid %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              studentreg_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_studentreg_path(@studentreg), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              studentreg_path(@studentreg),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
