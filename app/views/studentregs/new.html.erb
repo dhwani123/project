@@ -1,0 +1,94 @@
+<h3><i><u>REGISTRATION FORM FOR STUDENTS</u></i></h3>
+<%= form_for (@studentreg) do |f| %>
+<%= f.label :firstname %>
+<%= f.text_field :firstname %>
+<%= f.label :middlename %>
+<%= f.text_field :middlename %>
+<%= f.label :lastname %>
+<%= f.text_field :lastname %>
+<div>
+<h4>
+<%= f.label :Address %></h4>
+</div>
+<%= f.text_area :address,:size=>'50', :rows=>'70'%>
+<div>
+<%= f.label :DateOfBirth %>
+<%= f.date_select :dateofbirth, :start_year => Time.now.year - 40, :end_year => Time.now.year + 10 %>
+</div>
+<div>
+<%= f.label :grade %>
+<%= f.text_field :grade %>
+</div>
+<div>
+<%= f.label :division %>
+<%= f.text_field :division %>
+</div>
+<div>
+<%= f.label :gender %>
+<%= f.text_field :gender %>
+</div>
+<div>
+<%= f.label :contactnumber %>
+<%= f.text_field :contactnumber %>
+</div>
+<div>
+<%= f.label :bloodgroup %>
+<%= f.text_field :bloodgroup %>
+</div>
+<div>
+<%= f.label :dateofjoining %>
+<%= f.date_select :dateofbirth, :start_year => Time.now.year - 40, :end_year => Time.now.year + 10 %>
+</div>
+<div>
+<%= f.label :fname %>
+<%= f.text_field :fname %>
+</div>
+<div>
+<%= f.label :fqualification %>
+<%= f.text_field :fqualification %>
+</div>
+<div>
+<%= f.label :foccupation %>
+<%= f.text_field :foccupation %>
+</div>
+<div>
+<%= f.label :fincome %>
+<%= f.text_field :fincome %>
+</div>
+<div>
+<%= f.label :fcontactnumber %>
+<%= f.text_field :fcontactnumber %>
+<div>
+<%= f.label :femailid %>
+<%= f.text_field :femailid %>
+</div>
+<div>
+<%= f.label :mname %>
+<%= f.text_field :mname %>
+</div>
+<div>
+<%= f.label :mqualification %>
+<%= f.text_field :mqualification %>
+</div>
+<div>
+<%= f.label :moccupation %>
+<%= f.text_field :moccupation %>
+</div>
+<div>
+<%= f.label :mincome %>
+<%= f.text_field :mincome %>
+</div>
+<div>
+<%= f.label :mcontactnumber %>
+<%= f.text_field :mcontactnumber %>
+</div>
+<div>
+<%= f.label :memailid %>
+<%= f.text_field :memailid %>
+</div>
+
+<div class= "action">
+	<%= f.submit "Register" %>
+</div>
+</div>
+<% end %>

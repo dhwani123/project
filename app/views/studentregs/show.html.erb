@@ -1,0 +1,29 @@
+<p id= "notice"><%= notice %></p>
+
+<p>
+<b>Name:</b>
+<%= @studentreg.firstname %> 
+</p>
+
+<p>
+<b>DateOfbirth : </b>
+<%= @studentreg.dateofbirth %>
+</p>
+
+<p>
+<b>Grade: </b>
+<%= @studentreg.grade %>
+</p>
+
+<p>
+<b>Division: </b>
+<%= @studentreg.division %>
+</p>
+
+<p>
+<b>Gender: </b>
+<%= @studentreg.gender %>
+</p>
+
+<%= link_to 'Edit', edit_studentreg_path(@studentreg) %> |
+<%= link_to 'Back', studentregs_path %>
