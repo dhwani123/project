@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "application", :media => "screen" %>
+<body>
+	<div class="container-narrow">
+  <div class="masthead">
+    <%= render 'posts/user_header' %>
+    <h3 class="muted"><%= link_to "Cube", root_path %></h3>
+    <h5 class="muted">A demo of using SimpleDB with Devise</h5>
+  </div>
+  <hr /><%= link_to 'New Post', new_post_path %>
+
+  <%= yield %>
+</div>
+<% if cubestudent_signed_in? %>
+    Signed in as <%= current_cubestudent.email %>. Not you?
+    <%= link_to "Sign out", destroy_cubestudent_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_cubestudent_registration_path %> or <%= link_to "sign in", new_cubestudent_session_path %>
+  <% end %>
+</div>
+
+<h3>Listing posts</h3>
+<%= paginate @posts %>
+
+<%= render :partial => @posts %>
+<div id="user_nav">
+  
+<%= link_to 'New Post', new_post_path %>
+</body>

@@ -1,0 +1,9 @@
+<% if cubestudent_signed_in? %>
+
+<%= render 'form' %>
+<% else %>
+You need to sign in to post.
+<p> New User! <%= link_to "Sign Up", new_cubestudent_registration_path, :class => "btn btn-success" %></p> 
+<p> Existing user ! <%= link_to "Sign In", new_cubestudent_session_path, :class => "btn btn-success" %> </p>
+<% end %>
+<%= link_to 'Back', posts_path %>
