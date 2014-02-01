@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag "application",:media =>"screen" %>
+<p id="notice"><%= notice %></p>
+<%= render :partial => @post %>
+<% if cubestudent_signed_in?%>
+			<p><%= link_to 'Edit', edit_post_path(@post) %> 
+<%= link_to 'Back', posts_path %>
+<%= link_to 'Destroy', posts_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<h2 id="timeline">Comments</h2>
+		<div>
+			<%= render :partial => @post.comments %>
+		</div>
+
+		<div class="container">
+			<%= form_for [@post, Comment.new] do |f| %>
+			
+ 				<div style="padding-bottom:0">
+ 	
+ 					<%= f.text_area :body ,:placeholder => "Write your comment"%>
+ 				 <%= f.submit "Add comment", :class => "btn btn-info" %>
+ 				</div>
+			
+			<% end %>
+			</div>

@@ -1,9 +1,8 @@
-
 development:
   adapter: postgresql
   database: postgres
   username: postgres
-  password: dhwani
+  password: Twinkle
   pool: 5
   timeout: 5000
 
@@ -14,7 +13,7 @@ test:
   adapter: postgresql
   database: postgres
   username: postgres
-  password: dhwani
+  password: Twinkle
   pool: 5
   timeout: 5000
 

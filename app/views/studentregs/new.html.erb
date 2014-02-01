@@ -30,7 +30,7 @@
 <h4>
 <%= f.label :Address %></h4></td>
 <td><%= f.text_area :address,:size=>'50', :rows=>'70'%>
-</div></td>
+</div><td></td><td></td>
 <td><div>
 <p><%= f.label :DateOfBirth %></p></td>
 <td><p><input type="text" id="datepicker"></p>
@@ -42,11 +42,11 @@
 </div>
 <div>
 <%= f.label :division %>
-<%= f.text_field :division %>
+<%= f.select :division, options_for_select(%w[A B C D]) %>
 </div>
 <div>
 <%= f.label :gender %>
-<%= f.text_field :gender %>
+<%= f.select :gender, options_for_select(%w[Male Female]) %>
 </div>
 <div>
 <%= f.label :contactnumber %>
@@ -54,7 +54,7 @@
 </div>
 <div>
 <%= f.label :bloodgroup %>
-<%= f.text_field :bloodgroup %>
+<%= f.select :bloodgroup, options_for_select(%w[O+ O- A+ A- B+ B- AB+ AB-]) %>
 </div>
 <div>
 <%= f.label :dateofjoining %>
