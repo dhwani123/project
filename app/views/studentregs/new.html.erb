@@ -1,20 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+    $( "#datepicker1" ).datepicker();
+  });
+  </script>
 <h3><i><u>REGISTRATION FORM FOR STUDENTS</u></i></h3>
 <%= form_for (@studentreg) do |f| %>
-<%= f.label :firstname %>
-<%= f.text_field :firstname %>
-<%= f.label :middlename %>
-<%= f.text_field :middlename %>
-<%= f.label :lastname %>
-<%= f.text_field :lastname %>
+<table>
+<tr>
+<td><%= f.label :firstname %></td>
+<td><%= f.text_field :firstname %></td>
+<td><%= f.label :middlename %></td>
+<td><%= f.text_field :middlename %></td>
+<td><%= f.label :lastname %></td>
+<td><%= f.text_field :lastname %></td>
+</tr></table>
+<table>
+<tr><td>
 <div>
 <h4>
-<%= f.label :Address %></h4>
-</div>
-<%= f.text_area :address,:size=>'50', :rows=>'70'%>
-<div>
-<%= f.label :DateOfBirth %>
-<%= f.date_select :dateofbirth, :start_year => Time.now.year - 40, :end_year => Time.now.year + 10 %>
-</div>
+<%= f.label :Address %></h4></td>
+<td><%= f.text_area :address,:size=>'50', :rows=>'70'%>
+</div></td>
+<td><div>
+<p><%= f.label :DateOfBirth %></p></td>
+<td><p><input type="text" id="datepicker"></p>
+</div></td>
+</tr></table>
 <div>
 <%= f.label :grade %>
 <%= f.text_field :grade %>
@@ -37,7 +58,7 @@
 </div>
 <div>
 <%= f.label :dateofjoining %>
-<%= f.date_select :dateofbirth, :start_year => Time.now.year - 40, :end_year => Time.now.year + 10 %>
+ <p><input type="text" id="datepicker1"></p>
 </div>
 <div>
 <%= f.label :fname %>
@@ -58,6 +79,7 @@
 <div>
 <%= f.label :fcontactnumber %>
 <%= f.text_field :fcontactnumber %>
+</div>
 <div>
 <%= f.label :femailid %>
 <%= f.text_field :femailid %>
@@ -86,9 +108,13 @@
 <%= f.label :memailid %>
 <%= f.text_field :memailid %>
 </div>
+</head>
+<body>
 
 <div class= "action">
 	<%= f.submit "Register" %>
 </div>
-</div>
+</body>
+</html>
 <% end %>
+

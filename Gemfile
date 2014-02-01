@@ -9,7 +9,7 @@ gem 'kaminari'
 gem 'twitter-bootstrap-rails'
 gem 'pg'
 gem 'protected_attributes'
-gem 'jquery_datepicker'
+gem 'bootstrap-datepicker-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
