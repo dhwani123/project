@@ -1,0 +1,4 @@
+<h4 class="timeline-title"><%= link_to_unless_current post.title, post %></h4>
+<p> Created : <%= post.created_at.strftime("%d/%m/%Y") %> by <%= post.postedby %>
+	</p>
+<%= simple_format post.body , :class => "timeline-body"%>

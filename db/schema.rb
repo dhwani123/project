@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131112007) do
+ActiveRecord::Schema.define(version: 20140201053827) do
+
+  create_table "comments", force: true do |t|
+    t.integer  "post_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "postedby"
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
 
   create_table "cubeprincipals", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -66,6 +76,16 @@ ActiveRecord::Schema.define(version: 20140131112007) do
 
   add_index "cubeteachers", ["email"], name: "index_cubeteachers_on_email", unique: true, using: :btree
   add_index "cubeteachers", ["reset_password_token"], name: "index_cubeteachers_on_reset_password_token", unique: true, using: :btree
+
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.string   "postedby"
+    t.integer  "postedbyid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "subject"
+  end
 
   create_table "studentregs", force: true do |t|
     t.string   "firstname"

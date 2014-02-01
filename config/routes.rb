@@ -1,5 +1,16 @@
 Project::Application.routes.draw do
   
+  
+resources :posts do
+  resources :comments, :only => [:create]
+end
+  get "posts/create"
+  get "posts/destroy"
+  get "posts/new"
+  get "posts/index"
+  get "posts/show"
+  get "posts/edit"
+  get "posts/update"
   get "studentregs/new"
   get "studentregs/create"
   get "studentregs/show"
@@ -12,7 +23,7 @@ Project::Application.routes.draw do
   devise_for :cubeteachers
  
 
-  get "home" ,:to => "pages#home" 
+  root :to => "pages#home" 
   get "about" ,:to => "pages#about" 
   get "help" ,:to => "pages#help" 
   get "contactus", :to => "pages#contactus" 
