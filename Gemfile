@@ -8,7 +8,7 @@ gem 'kaminari'
 gem 'twitter-bootstrap-rails'
 gem 'pg'
 gem 'protected_attributes'
-gem 'activeadmin', github: 'gregbell/active_admin'
+#gem 'activeadmin', github: 'gregbell/active_admin'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
