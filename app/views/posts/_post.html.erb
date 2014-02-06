@@ -2,3 +2,9 @@
 <p> Created : <%= post.created_at.strftime("%d/%m/%Y") %> by <%= post.postedby %>
 	</p>
 <%= simple_format post.body , :class => "timeline-body"%>
+<%= pluralize post.reputation_for( :votes).to_i, "vote" %>
+<% if current_cubestudent && !current_cubestudent.voted_for?(post) %>
+<%= link_to "up", vote_post_path(post, type: "up"), method: "put" %>
+<%= link_to "down", vote_post_path(post, type: "down"), method: "put" %>
+<% end %>
+ 

@@ -10,7 +10,8 @@
 <ul class="nav nav-pills pull-right">
   <% if cubestudent_signed_in? %>
     <li><%= link_to "Sign out", destroy_cubestudent_session_path, :method => :delete %></li>
-    <li><%= link_to "Ask Question", new_post_path %>
+    <li><%= current_cubestudent.email %>(<%= current_cubestudent.reputation_for(:votes).to_i %>)</li>
+    <li><%= link_to "Ask Question", new_post_path %></li>
   <% else %>
     <li><%= link_to "Sign in", new_cubestudent_session_path %></li>
     <li><%= link_to "Sign up", new_cubestudent_registration_path %></li>

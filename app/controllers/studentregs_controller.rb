@@ -5,15 +5,18 @@ class StudentregsController < ApplicationController
   end
 
   def create
-    @studentreg = Studentreg.new(params[:studentreg])
+    
+    @studentreg = Studentreg.create(params[:studentreg])
       if @studentreg.save
             redirect_to @studentreg
+          else
+            render action: 'new'
               end
   
   end
 
   def show
-    @studentreg = Studentreg.find(params[:id])
+   
 
   end
 

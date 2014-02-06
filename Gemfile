@@ -7,7 +7,8 @@ gem 'devise'
 gem 'kaminari'
 gem 'twitter-bootstrap-rails'
 gem 'pg'
-gem 'protected_attributes'
+gem 'activerecord-reputation-system', github: 'NARKOZ/activerecord-reputation-system', branch: 'rails4'
+#gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'activeadmin', github: 'gregbell/active_admin'
 
 # Use SCSS for stylesheets

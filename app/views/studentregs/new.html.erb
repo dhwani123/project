@@ -1,5 +1,5 @@
 <h3><i><u>REGISTRATION FORM FOR STUDENTS</u></i></h3>
-<%= form_for (@studentreg) do |f| %>
+<%= form_for (@studentreg), :url => studentregs_path, :html => { :multipart => true } do |f| %>
 <%= f.label :firstname %>
 <%= f.text_field :firstname %>
 <%= f.label :middlename %>
@@ -85,6 +85,9 @@
 <div>
 <%= f.label :memailid %>
 <%= f.text_field :memailid %>
+</div>
+<div>
+<%= f.file_field :photo %>
 </div>
 
 <div class= "action">

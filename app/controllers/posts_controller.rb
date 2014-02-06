@@ -15,9 +15,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
-  
-
-  end
+    end
 
   def destroy
     @post.destroy
@@ -32,10 +30,12 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.order("title").page(params[:page]).per(5) 
+   @posts = Post.find_with_reputation(:votes, :all, order: "votes desc") 
+    
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -52,6 +52,16 @@ class PostsController < ApplicationController
       end
     end
   end
+
+def  vote
+  value = params[:type] == "up" ? 1 : -1
+  @post = Post.find(params[:id])
+  @post.add_or_update_evaluation(:votes, value, current_cubestudent)
+  redirect_to :back, notice: "Thank you for voting"
+end
+
+  
+
 
 
   private

@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag "application",:media =>"screen" %>
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 <%= render :partial => @post %>
 <% if cubestudent_signed_in?%>
 			<p><%= link_to 'Edit', edit_post_path(@post) %> 
