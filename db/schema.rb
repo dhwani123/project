@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204140823) do
+ActiveRecord::Schema.define(version: 20140302061334) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140204140823) do
     t.integer  "postedbyid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "subject"
+    t.integer  "cubestudent_id"
   end
 
   create_table "rs_evaluations", force: true do |t|
@@ -166,6 +166,24 @@ ActiveRecord::Schema.define(version: 20140204140823) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
   end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "views", force: true do |t|
     t.string   "email",                  default: "", null: false

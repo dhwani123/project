@@ -3,6 +3,7 @@ class Cubestudent < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+         attr_accessible :email, :password, :passwordconfirmation
 
 has_many :evaluations, class_name: "RSEvaluation", as: :source
 has_many :posts, :dependent => :destroy

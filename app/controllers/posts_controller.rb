@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  
+ 
+  @posts = Post.find(:all, :order => 'posts.created_at DESC')
+
   def create
     @post = Post.new(post_params)
+
     @post.postedby = current_cubestudent.email
     @post.postedbyid = current_cubestudent.id
 
@@ -30,15 +33,19 @@ class PostsController < ApplicationController
   end
 
   def index
-   @posts = Post.find_with_reputation(:votes, :all, order: "votes desc") 
-    
+
+    @posts = Post.search(params[:search])
+    if params[:tag]
+    @posts = Post.tagged_with(params[:tag])
+    end   
   end
 
   def show
-    @post = Post.find(params[:id])
+       
   end
-
+#GET /posts/1/edit
   def edit
+   @post = Post.find(params[:id]) 
   end
 
   def update
@@ -61,7 +68,7 @@ def  vote
 end
 
   
-
+  
 
 
   private
@@ -72,6 +79,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :subject)
+      params.require(:post).permit(:title, :body)
+      par
     end
 end

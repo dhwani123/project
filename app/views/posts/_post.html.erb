@@ -1,10 +1,17 @@
 <h4 class="timeline-title"><%= link_to_unless_current post.title, post %></h4>
-<p> Created : <%= post.created_at.strftime("%d/%m/%Y") %> by <%= post.postedby %>
-	</p>
+ <%= time_ago_in_words(post.created_at) %>  ago by <%= post.postedby %>
+	
+	
+	<% if current_cubestudent.email == post.postedby %>
+			<p><%= link_to 'Edit', edit_post_path(post) %> 
+			
+			</p>
+	<% end %>
 <%= simple_format post.body , :class => "timeline-body"%>
-<%= pluralize post.reputation_for( :votes).to_i, "vote" %>
+
+
 <% if current_cubestudent && !current_cubestudent.voted_for?(post) %>
-<%= link_to "up", vote_post_path(post, type: "up"), method: "put" %>
-<%= link_to "down", vote_post_path(post, type: "down"), method: "put" %>
+<%= link_to "up", vote_post_path(post, type: "up"), method: :post %>
+<%= link_to "down", vote_post_path(post, type: "down"), method: :post %>
 <% end %>
  
