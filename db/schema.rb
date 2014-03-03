@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201053827) do
+ActiveRecord::Schema.define(version: 20140204103841) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -22,6 +22,65 @@ ActiveRecord::Schema.define(version: 20140201053827) do
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+
+  create_table "cstudents", force: true do |t|
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.string   "gender"
+    t.integer  "grade"
+    t.string   "division"
+    t.text     "address"
+    t.string   "contactnumber"
+    t.date     "dateofbirth"
+    t.string   "bloodgroup"
+    t.string   "fname"
+    t.string   "fqualification"
+    t.string   "foccupation"
+    t.string   "fincome"
+    t.string   "fcontactnumber"
+    t.string   "femailid"
+    t.string   "mname"
+    t.string   "mqualification"
+    t.string   "moccupation"
+    t.string   "mincome"
+    t.string   "mcontactnumber"
+    t.string   "memailid"
+    t.date     "dateofjoining"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "cstudents", ["email"], name: "index_cstudents_on_email", unique: true, using: :btree
+  add_index "cstudents", ["reset_password_token"], name: "index_cstudents_on_reset_password_token", unique: true, using: :btree
+
+  create_table "cteachers", force: true do |t|
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.string   "gender"
+    t.text     "address"
+    t.string   "mobilenumber"
+    t.date     "dateofbirth"
+    t.string   "qualification"
+    t.string   "specification"
+    t.string   "designation"
+    t.integer  "experience"
+    t.date     "dateofjoining"
+    t.string   "bloodgroup"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cubeprincipals", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -77,6 +136,31 @@ ActiveRecord::Schema.define(version: 20140201053827) do
   add_index "cubeteachers", ["email"], name: "index_cubeteachers_on_email", unique: true, using: :btree
   add_index "cubeteachers", ["reset_password_token"], name: "index_cubeteachers_on_reset_password_token", unique: true, using: :btree
 
+  create_table "dhwani123s", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "members", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["email"], name: "index_members_on_email", unique: true, using: :btree
+  add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
+
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "body"
@@ -86,6 +170,193 @@ ActiveRecord::Schema.define(version: 20140201053827) do
     t.datetime "updated_at"
     t.string   "subject"
   end
+
+  create_table "prins", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prins", ["email"], name: "index_prins_on_email", unique: true, using: :btree
+  add_index "prins", ["reset_password_token"], name: "index_prins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "pris", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pris", ["email"], name: "index_pris_on_email", unique: true, using: :btree
+  add_index "pris", ["reset_password_token"], name: "index_pris_on_reset_password_token", unique: true, using: :btree
+
+  create_table "rprincipals", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rprincipals", ["email"], name: "index_rprincipals_on_email", unique: true, using: :btree
+  add_index "rprincipals", ["reset_password_token"], name: "index_rprincipals_on_reset_password_token", unique: true, using: :btree
+
+  create_table "rs_evaluations", force: true do |t|
+    t.string   "reputation_name"
+    t.integer  "source_id"
+    t.string   "source_type"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.float    "value",           default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rs_evaluations", ["reputation_name", "source_id", "source_type", "target_id", "target_type"], name: "index_rs_evaluations_on_reputation_name_and_source_and_target", unique: true, using: :btree
+  add_index "rs_evaluations", ["reputation_name"], name: "index_rs_evaluations_on_reputation_name", using: :btree
+  add_index "rs_evaluations", ["source_id", "source_type"], name: "index_rs_evaluations_on_source_id_and_source_type", using: :btree
+  add_index "rs_evaluations", ["target_id", "target_type"], name: "index_rs_evaluations_on_target_id_and_target_type", using: :btree
+
+  create_table "rs_reputation_messages", force: true do |t|
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.integer  "receiver_id"
+    t.float    "weight",      default: 1.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rs_reputation_messages", ["receiver_id", "sender_id", "sender_type"], name: "index_rs_reputation_messages_on_receiver_id_and_sender", unique: true, using: :btree
+  add_index "rs_reputation_messages", ["receiver_id"], name: "index_rs_reputation_messages_on_receiver_id", using: :btree
+  add_index "rs_reputation_messages", ["sender_id", "sender_type"], name: "index_rs_reputation_messages_on_sender_id_and_sender_type", using: :btree
+
+  create_table "rs_reputations", force: true do |t|
+    t.string   "reputation_name"
+    t.float    "value",           default: 0.0
+    t.string   "aggregated_by"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.boolean  "active",          default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rs_reputations", ["reputation_name", "target_id", "target_type"], name: "index_rs_reputations_on_reputation_name_and_target", unique: true, using: :btree
+  add_index "rs_reputations", ["reputation_name"], name: "index_rs_reputations_on_reputation_name", using: :btree
+  add_index "rs_reputations", ["target_id", "target_type"], name: "index_rs_reputations_on_target_id_and_target_type", using: :btree
+
+  create_table "rstudents", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rstudents", ["email"], name: "index_rstudents_on_email", unique: true, using: :btree
+  add_index "rstudents", ["reset_password_token"], name: "index_rstudents_on_reset_password_token", unique: true, using: :btree
+
+  create_table "rstuds", force: true do |t|
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.date     "dob"
+    t.string   "address"
+    t.string   "fathername"
+    t.string   "mothername"
+    t.string   "f_qaulification"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rteachers", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rteachers", ["email"], name: "index_rteachers_on_email", unique: true, using: :btree
+  add_index "rteachers", ["reset_password_token"], name: "index_rteachers_on_reset_password_token", unique: true, using: :btree
+
+  create_table "rteaches", force: true do |t|
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.date     "dob"
+    t.date     "doj"
+    t.string   "specification"
+    t.string   "experience"
+    t.string   "designation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sregs", force: true do |t|
+    t.string   "name"
+    t.string   "class"
+    t.string   "city"
+    t.string   "bloodgroup"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sts", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sts", ["email"], name: "index_sts_on_email", unique: true, using: :btree
+  add_index "sts", ["reset_password_token"], name: "index_sts_on_reset_password_token", unique: true, using: :btree
 
   create_table "studentregs", force: true do |t|
     t.string   "firstname"
@@ -114,6 +385,53 @@ ActiveRecord::Schema.define(version: 20140201053827) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "studs", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "studs", ["email"], name: "index_studs_on_email", unique: true, using: :btree
+  add_index "studs", ["reset_password_token"], name: "index_studs_on_reset_password_token", unique: true, using: :btree
+
+  create_table "teacherregs", force: true do |t|
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.string   "gender"
+    t.text     "address"
+    t.string   "contactnumber"
+    t.date     "dateofbirth"
+    t.string   "bloodgroup"
+    t.string   "qualification"
+    t.string   "specialization"
+    t.string   "designation"
+    t.integer  "experience"
+    t.date     "dateofjoining"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "encrypted_password"
+    t.string   "salt"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "views", force: true do |t|
     t.string   "email",                  default: "", null: false

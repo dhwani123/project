@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-gem 'cancan'
+
 gem 'devise'
 gem 'kaminari'
 gem 'twitter-bootstrap-rails'
 gem 'pg'
 gem 'protected_attributes'
-
+gem 'activerecord-reputation-system'
 gem 'bootstrap-datepicker-rails'
 
 # Use SCSS for stylesheets

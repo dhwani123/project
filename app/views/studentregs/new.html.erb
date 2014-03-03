@@ -17,97 +17,122 @@
 <%= form_for (@studentreg) do |f| %>
 <table>
 <tr>
-<td><%= f.label :firstname %></td>
+<td><%= f.label :firstname %></td><td></td><td></td>
 <td><%= f.text_field :firstname %></td>
-<td><%= f.label :middlename %></td>
+<td></td><td></td>
+<td><%= f.label :middlename %></td><td></td><td></td>
 <td><%= f.text_field :middlename %></td>
-<td><%= f.label :lastname %></td>
+<td></td><td></td>
+<td><%= f.label :lastname %></td><td></td><td></td>
 <td><%= f.text_field :lastname %></td>
 </tr></table>
 <table>
 <tr><td>
 <div>
 <h4>
-<%= f.label :Address %></h4></td>
+<%= f.label :Address %></h4></td><td></td><td></td>
 <td><%= f.text_area :address,:size=>'50', :rows=>'70'%>
 </div><td></td><td></td>
 <td><div>
-<p><%= f.label :DateOfBirth %></p></td>
+<p><%= f.label :DateOfBirth %></p></td><td></td><td></td>
 <td><p><input type="text" id="datepicker"></p>
 </div></td>
 </tr></table>
-<div>
-<%= f.label :grade %>
-<%= f.text_field :grade %>
-</div>
-<div>
-<%= f.label :division %>
-<%= f.select :division, options_for_select(%w[A B C D]) %>
-</div>
-<div>
-<%= f.label :gender %>
-<%= f.select :gender, options_for_select(%w[Male Female]) %>
-</div>
-<div>
-<%= f.label :contactnumber %>
-<%= f.text_field :contactnumber %>
-</div>
-<div>
-<%= f.label :bloodgroup %>
-<%= f.select :bloodgroup, options_for_select(%w[O+ O- A+ A- B+ B- AB+ AB-]) %>
-</div>
-<div>
-<%= f.label :dateofjoining %>
- <p><input type="text" id="datepicker1"></p>
-</div>
-<div>
-<%= f.label :fname %>
-<%= f.text_field :fname %>
-</div>
-<div>
-<%= f.label :fqualification %>
-<%= f.text_field :fqualification %>
-</div>
-<div>
-<%= f.label :foccupation %>
-<%= f.text_field :foccupation %>
-</div>
-<div>
-<%= f.label :fincome %>
-<%= f.text_field :fincome %>
-</div>
-<div>
-<%= f.label :fcontactnumber %>
-<%= f.text_field :fcontactnumber %>
-</div>
-<div>
-<%= f.label :femailid %>
-<%= f.text_field :femailid %>
-</div>
-<div>
-<%= f.label :mname %>
-<%= f.text_field :mname %>
-</div>
-<div>
-<%= f.label :mqualification %>
-<%= f.text_field :mqualification %>
-</div>
-<div>
-<%= f.label :moccupation %>
-<%= f.text_field :moccupation %>
-</div>
-<div>
-<%= f.label :mincome %>
-<%= f.text_field :mincome %>
-</div>
-<div>
-<%= f.label :mcontactnumber %>
-<%= f.text_field :mcontactnumber %>
-</div>
-<div>
-<%= f.label :memailid %>
-<%= f.text_field :memailid %>
-</div>
+<table>
+<tr>
+<td><div>
+<%= f.label :grade %></td><td></td><td></td>
+<td><%= f.text_field :grade %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :division %></td><td></td><td></td>
+<td><%= f.select :division, options_for_select(%w[A B C D]) %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :gender %></td><td></td><td></td>
+<td><%= f.select :gender, options_for_select(%w[Male Female]) %>
+</div></td></tr></table>
+<table>
+<tr>
+<td><div>
+<%= f.label :contactnumber %></td><td></td><td></td>
+<td><%= f.text_field :contactnumber %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :bloodgroup %></td><td></td><td></td>
+<td><%= f.select :bloodgroup, options_for_select(%w[O+ O- A+ A- B+ B- AB+ AB-]) %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :dateofjoining %></td><td></td><td></td>
+ <td><p><input type="text" id="datepicker1"></p>
+</div></td></tr></table>
+<table><tr><td><div>
+<%= f.label :fname %></td><td></td><td></td>
+<td><%= f.text_field :fname %>
+</div></td></tr></table>
+<table>
+<tr>
+<td><div>
+<%= f.label :fqualification %></td><td></td><td></td>
+<td><%= f.text_field :fqualification %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :foccupation %></td><td></td><td></td>
+<td><%= f.text_field :foccupation %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :fincome %></td><td></td><td></td>
+<td><%= f.text_field :fincome %>
+</div></td></tr></table>
+<table><tr>
+<td><div>
+<%= f.label :fcontactnumber %></td><td></td><td></td>
+<td><%= f.text_field :fcontactnumber %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :femailid %></td><td></td><td></td>
+<td><%= f.text_field :femailid %>
+</div></td></tr></table>
+<table>
+<tr>
+<td><div>
+<%= f.label :mname %></td><td></td><td></td>
+<td><%= f.text_field :mname %>
+</div></td></tr></table>
+<table>
+<tr>
+<td><div>
+<%= f.label :mqualification %></td><td></td><td></td>
+<td><%= f.text_field :mqualification %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :moccupation %></td><td></td><td></td>
+<td><%= f.text_field :moccupation %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :mincome %></td><td></td><td></td>
+<td><%= f.text_field :mincome %>
+</div></td></tr></table>
+<table>
+<tr>
+<td><div>
+<%= f.label :mcontactnumber %></td><td></td><td></td>
+<td><%= f.text_field :mcontactnumber %>
+</div></td>
+<td></td><td></td>
+<td><div>
+<%= f.label :memailid %></td><td></td><td></td>
+<td><%= f.text_field :memailid %>
+</div></td></tr></table>
 </head>
 <body>
 
