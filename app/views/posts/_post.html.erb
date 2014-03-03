@@ -1,6 +1,7 @@
 
 
 <h4 class="timeline-title"><%= link_to_unless_current post.title, post %></h4>
+<<<<<<< HEAD
 <p> Created : <%= post.created_at.strftime("%d/%m/%Y") %> by <%= post.postedby %>
 	</p>
 
@@ -13,3 +14,21 @@
   <%= link_to "down", vote_post_path(post, type: "down"), method: "post" %>
  
 </div>
+=======
+ <%= time_ago_in_words(post.created_at) %>  ago by <%= post.postedby %>
+	
+	
+	<% if current_cubestudent.email == post.postedby %>
+			<p><%= link_to 'Edit', edit_post_path(post) %> 
+			
+			</p>
+	<% end %>
+<%= simple_format post.body , :class => "timeline-body"%>
+
+
+<% if current_cubestudent && !current_cubestudent.voted_for?(post) %>
+<%= link_to "up", vote_post_path(post, type: "up"), method: :post %>
+<%= link_to "down", vote_post_path(post, type: "down"), method: :post %>
+<% end %>
+ 
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a

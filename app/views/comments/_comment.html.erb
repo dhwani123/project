@@ -1,7 +1,6 @@
 <%= div_for comment do |f| %>
+<%= comment.body %>
 
-<p class="text-muted"><i class="glyphicon glyphicon-time"></i> <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.postedby %></p>
-
-	<%= comment.body %>
+<p > <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.postedby %></p>
 
 <% end %>

@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  
+ 
+  @posts = Post.find(:all, :order => 'posts.created_at DESC')
+
   def create
     @post = Post.new(post_params)
+
     @post.postedby = current_cubestudent.email
     @post.postedbyid = current_cubestudent.id
 
@@ -15,6 +18,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+<<<<<<< HEAD
   
 
   end
@@ -25,6 +29,9 @@ class PostsController < ApplicationController
     @post.add_or_update_evaluation(:votes, value, current_cubestudent)
     redirect_to :back, notice: "Thank you for voting!"
   end
+=======
+    end
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
 
   def destroy
     @post.destroy
@@ -39,15 +46,28 @@ class PostsController < ApplicationController
   end
 
   def index
+<<<<<<< HEAD
     @posts = Post.order("title").page(params[:page]).per(5)
     @posts = Post.find_with_reputation(:votes, :all, order: 'votes desc') 
   end
 
   def show
     @post = Post.find(params[:id])
+=======
+
+    @posts = Post.search(params[:search])
+    if params[:tag]
+    @posts = Post.tagged_with(params[:tag])
+    end   
   end
 
+  def show
+       
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
+  end
+#GET /posts/1/edit
   def edit
+   @post = Post.find(params[:id]) 
   end
 
 
@@ -63,6 +83,16 @@ class PostsController < ApplicationController
     end
   end
 
+def  vote
+  value = params[:type] == "up" ? 1 : -1
+  @post = Post.find(params[:id])
+  @post.add_or_update_evaluation(:votes, value, current_cubestudent)
+  redirect_to :back, notice: "Thank you for voting"
+end
+
+  
+  
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -72,6 +102,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :subject)
+      params.require(:post).permit(:title, :body)
+      par
     end
 end

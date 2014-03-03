@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
@@ -10,14 +11,33 @@
   
   <%= stylesheet_link_tag  'bootstrap', :media => 'screen' %>
   <%= javascript_include_tag "application" %>
+=======
+  <title>Project</title>
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
   
 </head>
 <body>
+<<<<<<< HEAD
  
 
 
+=======
+<ul class="nav nav-pills pull-right">
+<h3 class="muted"><%= link_to "Cube", root_path %></h3>
+    <h5 class="muted">Collaborate and Understand - The best way of Education</h5>
+  <% if cubestudent_signed_in? %>
+    Signed in as <%= current_cubestudent.email %>. Not you?
+    <%= link_to "Sign out", destroy_cubestudent_session_path, :method => :delete %>
+    <%= link_to "Profile", new_studentreg_path %>
+    <%= link_to "Question", posts_path %>
+  <% else %>
+    <%= link_to "Sign up", new_cubestudent_registration_path %> or <%= link_to "sign in", new_cubestudent_session_path %>
+  <% end %>
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
 
-<%= yield %>
 
+</ul>
+<div>
+<%= yield %></div>
 </body>
 </html>

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140204103841) do
+=======
+ActiveRecord::Schema.define(version: 20140302061334) do
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -113,6 +117,10 @@ ActiveRecord::Schema.define(version: 20140204103841) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "cubestudents", ["email"], name: "index_cubestudents_on_email", unique: true, using: :btree
@@ -168,9 +176,10 @@ ActiveRecord::Schema.define(version: 20140204103841) do
     t.integer  "postedbyid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "subject"
+    t.integer  "cubestudent_id"
   end
 
+<<<<<<< HEAD
   create_table "prins", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -225,6 +234,8 @@ ActiveRecord::Schema.define(version: 20140204103841) do
   add_index "rprincipals", ["email"], name: "index_rprincipals_on_email", unique: true, using: :btree
   add_index "rprincipals", ["reset_password_token"], name: "index_rprincipals_on_reset_password_token", unique: true, using: :btree
 
+=======
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
   create_table "rs_evaluations", force: true do |t|
     t.string   "reputation_name"
     t.integer  "source_id"
@@ -269,6 +280,7 @@ ActiveRecord::Schema.define(version: 20140204103841) do
   add_index "rs_reputations", ["reputation_name"], name: "index_rs_reputations_on_reputation_name", using: :btree
   add_index "rs_reputations", ["target_id", "target_type"], name: "index_rs_reputations_on_target_id_and_target_type", using: :btree
 
+<<<<<<< HEAD
   create_table "rstudents", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -358,6 +370,8 @@ ActiveRecord::Schema.define(version: 20140204103841) do
   add_index "sts", ["email"], name: "index_sts_on_email", unique: true, using: :btree
   add_index "sts", ["reset_password_token"], name: "index_sts_on_reset_password_token", unique: true, using: :btree
 
+=======
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
   create_table "studentregs", force: true do |t|
     t.string   "firstname"
     t.string   "middlename"
@@ -384,8 +398,13 @@ ActiveRecord::Schema.define(version: 20140204103841) do
     t.string   "memailid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
+<<<<<<< HEAD
   create_table "studs", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -432,6 +451,25 @@ ActiveRecord::Schema.define(version: 20140204103841) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+=======
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+>>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
 
   create_table "views", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,4 +1,4 @@
-<h1>New post</h1><%= form_for(@post) do |f| %>
+<h1>New Question</h1><%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -19,10 +19,7 @@
     <%= f.label :body %><br>
     <%= f.text_area :body, :rows => 10, :columns => 10 %>
   </div>
-  <div class="field">
-    <%= f.label :subject %><br>
-    <%= f.select :subject, options_for_select(%w[Science English Maths History Geography]) %>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
