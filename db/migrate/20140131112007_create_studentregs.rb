@@ -5,13 +5,13 @@ class CreateStudentregs < ActiveRecord::Migration
       t.string :middlename
       t.string :lastname
       t.text :address
-      t.date :dateofbirth
+      t.datepicker :dateofbirth
       t.string :grade
       t.string :division
       t.string :gender
       t.string :contactnumber
       t.string :bloodgroup
-      t.date :dateofjoining
+      t.datepicker :dateofjoining
       t.string :fname
       t.string :fqualification
       t.string :foccupation

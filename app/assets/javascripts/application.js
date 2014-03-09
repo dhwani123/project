@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
 $(function() {
 	$("#post_author_tokens").tokenInput("/subjects.json", {
 		crossDomain: false,
@@ -22,3 +23,4 @@ $(function() {
 		theme: "facebook"
 	});
 });
+

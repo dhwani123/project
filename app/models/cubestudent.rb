@@ -7,7 +7,14 @@ class Cubestudent < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          attr_accessible :email, :password, :passwordconfirmation
 
+
+  attr_accessible :email
+  attr_accessible :password       
+
+
+
 has_many :evaluations, class_name: "RSEvaluation", as: :source
+
 has_many :posts, :dependent => :destroy
 has_many :comments, :dependent => :destroy
 has_reputation :votes, source: {reputation: :votes, of: :posts }, aggregated_by: :sum

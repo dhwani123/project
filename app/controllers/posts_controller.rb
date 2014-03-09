@@ -18,6 +18,18 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+
+  
+
+  end
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @post = Post.find(params[:id])
+    @post.add_evaluation(:votes, value, current_cubestudent)
+    @post.add_or_update_evaluation(:votes, value, current_cubestudent)
+    redirect_to :back, notice: "Thank you for voting!"
+  end
+
     end
 
 def current_user
@@ -37,19 +49,26 @@ end
 
   def index
 
+    @posts = Post.order("title").page(params[:page]).per(5)
+    @posts = Post.find_with_reputation(:votes, :all, order: 'votes desc') 
+  end
+
+  def show
+    @post = Post.find(params[:id])
+
+
     @posts = Post.search(params[:search])
     if params[:tag]
     @posts = Post.tagged_with(params[:tag])
     end   
   end
 
-  def show
-       
-  end
+  
 #GET /posts/1/edit
   def edit
    @post = Post.find(params[:id]) 
   end
+
 
   def update
     respond_to do |format|
@@ -63,18 +82,7 @@ end
     end
   end
 
-def  vote
-  value = params[:type] == "up" ? 1 : -1
-  @post = Post.find(params[:id])
-  @post.add_or_update_evaluation(:votes, value, current_cubestudent)
-  redirect_to :back, notice: "Thank you for voting"
-end
-
-  
-  
-
-
-  private
+ private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
@@ -83,5 +91,7 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :body)
+
    end
+end
 end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-gem 'cancan'
+
 gem 'devise'
 gem 'kaminari'
 gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails'
@@ -10,12 +10,17 @@ gem 'pg'
 gem 'merit'
 #gem 'acts-as-taggable-on'
 gem 'protected_attributes'
+
+gem 'activerecord-reputation-system'
+gem 'bootstrap-datepicker-rails'
+
 gem 'activerecord-reputation-system', github: 'NARKOZ/activerecord-reputation-system', branch: 'rails4'
 #gem 'less-rails'
 #gem 'therubyracer', '0.12.0'
 
 #gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'activeadmin', github: 'gregbell/active_admin'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
