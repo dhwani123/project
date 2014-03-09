@@ -1,10 +1,13 @@
 Project::Application.routes.draw do
   
   
-resources :posts do
-  resources :comments, :only => [:create]
-member { post :vote }
-end
+  resources :subjects
+
+  resources :posts do
+   resources :comments, :only => [:create]
+   member { post :vote }
+   end
+
   get "posts/create"
   get "posts/destroy"
   get "posts/new"

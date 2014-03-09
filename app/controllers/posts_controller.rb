@@ -20,6 +20,9 @@ class PostsController < ApplicationController
     end
     end
 
+def current_user
+end
+
   def destroy
     @post.destroy
     respond_to do |format|
@@ -80,6 +83,5 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :body)
-      par
-    end
+   end
 end

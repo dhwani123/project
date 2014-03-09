@@ -1,4 +1,6 @@
 class Cubestudent < ActiveRecord::Base
+  has_merit
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,7 +10,7 @@ class Cubestudent < ActiveRecord::Base
 has_many :evaluations, class_name: "RSEvaluation", as: :source
 has_many :posts, :dependent => :destroy
 has_many :comments, :dependent => :destroy
-has_reputation :votes, source: { reputation: :votes, of: :posts }, aggregated_by: :sum
+has_reputation :votes, source: {reputation: :votes, of: :posts }, aggregated_by: :sum
 
 
 def voted_for?(post)
