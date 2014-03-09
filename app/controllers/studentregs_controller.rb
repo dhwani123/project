@@ -23,11 +23,11 @@ class StudentregsController < ApplicationController
   def index
     @studentregs = Studentreg.all
     @studentregs = Studentreg.find(:all)
-<<<<<<< HEAD
-    @date = params[:month] ? Date.parse(params[:month]) : Date.today
-=======
 
->>>>>>> 4d1d05d1f3011e8b3f15f66581160515c8ea2c9a
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+
+
+
     
     end
 

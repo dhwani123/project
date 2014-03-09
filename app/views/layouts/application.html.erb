@@ -26,15 +26,11 @@
 <h3 class="muted"><%= link_to "Cube", root_path %></h3>
     <h5 class="muted">Collaborate and Understand - The best way of Education</h5>
   <% if cubestudent_signed_in? %>
-    Signed in as <%= current_cubestudent.email %>. Not you? ( <%= current_cubestudent.points %>)
+    Signed in as <%= current_cubestudent.email %>. Not you? 
     <%= link_to "Sign out", destroy_cubestudent_session_path, :method => :delete %>
     <%= link_to "Profile", new_studentreg_path %>
      
-    <ul>
-    <% current_cubestudent.badges.each do |badge| %>
-    <li> <%= badge.name %></li>
-    <% end %>
-    </ul>
+    
     <%= link_to "Question", posts_path %>
   <% else %>
     <%= link_to "Sign up", new_cubestudent_registration_path %> or <%= link_to "sign in", new_cubestudent_session_path %>
