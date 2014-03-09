@@ -5,7 +5,7 @@ class Cubestudent < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          attr_accessible :email, :password, :passwordconfirmation
 
-
+   has_one :studentreg
   attr_accessible :email
   attr_accessible :password       
 

@@ -1,37 +1,26 @@
 class StudentregsController < ApplicationController
+  
   def new
     @studentreg = Studentreg.new
-
   end
 
   def create
-    
     @studentreg = Studentreg.new(params[:studentreg])
-    
-      if @studentreg.save
+    if @studentreg.save
             redirect_to @studentreg
-          
-              end
-  
+    end
   end
 
   def show
    @studentreg = Studentreg.find(params[:id])
-
   end
 
   def index
-    @studentregs = Studentreg.all
     @studentregs = Studentreg.find(:all)
-
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
+  end
 
-
-
-    
-    end
-
-    def update
+  def update
     respond_to do |format|
       if @studentreg.update(studentreg_params)
         format.html { redirect_to @studentreg, notice: 'INformation was successfully updated.' }
@@ -44,5 +33,7 @@ class StudentregsController < ApplicationController
   end
 
   def edit
+
   end
+
   end
