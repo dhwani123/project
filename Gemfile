@@ -9,7 +9,7 @@ gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails'
 gem 'pg'
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
-#gem 'acts-as-taggable-on'
+
 gem 'protected_attributes'
 
 

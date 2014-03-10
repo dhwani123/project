@@ -16,6 +16,8 @@
 <h3><i><u>REGISTRATION FORM FOR STUDENTS</u></i></h3>
 
 <%= form_for (@studentreg) do |f| %>
+<fieldset>
+<legend> Personal Details</legend>
 <table>
 <tr>
 <td><%= f.label :firstname %></td><td></td><td></td>
@@ -28,15 +30,12 @@
 <td><%= f.text_field :lastname %></td>
 </tr></table>
 <table>
-<tr><td>
-
-<div>
-<h4>
-<%= f.label :Address %></h4></td><td></td><td></td>
+<tr><td><div>
+<%= f.label :Address %></td><td></td><td></td>
 <td><%= f.text_area :address,:size=>'50', :rows=>'70'%>
 </div><td></td><td></td>
 <td><div>
-<p><%= f.label :DateOfBirth %></p></td><td></td><td></td>
+<p><%= f.label :DateOfBirth %></p></div></td><td></td><td></td>
 <td><p><input type="text" id="datepicker"></p>
 </div></td>
 </tr></table>
@@ -75,7 +74,9 @@
 <table><tr><td><div>
 <%= f.label :fname %></td><td></td><td></td>
 <td><%= f.text_field :fname %>
-</div></td></tr></table>
+</td></tr></table>
+</div>
+</fieldset>
 <table>
 <tr>
 <td><div>

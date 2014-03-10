@@ -1,7 +1,7 @@
 <h1>New Question</h1><%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@post.errors.count, "error") %></h2>
 
       <ul>
       <% @post.errors.full_messages.each do |msg| %>
@@ -19,8 +19,22 @@
     <%= f.label :body %><br>
     <%= f.text_area :body, :rows => 10, :columns => 10 %>
   </div>
-  
+  <div class="field">
+    <%= f.label :subject_tokens , "Subjects"%><br>
+    <%= f.text_field :subject_tokens, "data-pre" => @post.subjects.map(&:attributes).to_json %>
+  </div>
+ 
+ <br/>
   <div class="actions">
     <%= f.submit %>
   </div>
+  <script>
+  $(function() {
+  $("#post_subject_tokens").tokenInput("/subjects.json", {
+    crossDomain: false,
+    prePopulate: $("#post_subject_tokens").data("pre"),
+    theme: "facebook"
+    });
+});
+  </script>
 <% end %>

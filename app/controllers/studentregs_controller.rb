@@ -5,7 +5,9 @@ class StudentregsController < ApplicationController
   end
 
   def create
+
     @studentreg = Studentreg.new(params[:studentreg])
+    @studentreg.email = current_cubestudent.email
     if @studentreg.save
             redirect_to @studentreg
     end

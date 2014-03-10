@@ -10,17 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
+//
+//= require jquery.tokeninput
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
 
-$(function() {
-	$("#post_author_tokens").tokenInput("/subjects.json", {
-		crossDomain: false,
-		prePopulate: $("#post_author_tokens").data("pre"),
-		theme: "facebook"
-	});
-});
+
 

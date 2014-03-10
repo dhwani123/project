@@ -9,22 +9,18 @@
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
   
-  <%= stylesheet_link_tag  'bootstrap', :media => 'screen' %>
-  
-
-  <title>Project</title>
-
-  <%= stylesheet_link_tag "application", "token-input-facebook" %>
-  <%= javascript_include_tag :defaults, "jquery.tokeninput" %>
-
-
+  <%= stylesheet_link_tag 'bootstrap' %>
+  <%= stylesheet_link_tag 'token-input-facebook' %>
+  <%= javascript_include_tag :default, 'jquery.tokeninput' %>
+   
 </head>
 <body>
  
 
-<ul class="nav nav-pills pull-right">
-<h3 class="muted"><%= link_to "Cube", root_path %></h3>
-    <h5 class="muted">Collaborate and Understand - The best way of Education</h5>
+<ul >
+<h3 ><%= link_to "Cube", root_path %></h3>
+    <h5 >Collaborate and Understand - The best way of Education</h5>
+    <div class="muted">
   <% if cubestudent_signed_in? %>
     Signed in as <%= current_cubestudent.email %>. Not you? 
     <%= link_to "Sign out", destroy_cubestudent_session_path, :method => :delete %>
@@ -35,7 +31,7 @@
   <% else %>
     <%= link_to "Sign up", new_cubestudent_registration_path %> or <%= link_to "sign in", new_cubestudent_session_path %>
   <% end %>
-
+</div>
 
 
 </ul>

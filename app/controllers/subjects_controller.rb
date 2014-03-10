@@ -4,10 +4,10 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.find(:all)
+    @subjects = Subject.where(" name LIKE ? ", "%#{params[:q].downcase.to_s}%" )
     respond_to do |format|
       format.html
-      
+      format.json {render :json => @subjects.map(&:attributes)}
     end
   end
 
