@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+});
+</script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -9,14 +15,14 @@
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
   
-  <%= stylesheet_link_tag 'bootstrap' %>
+  <%= stylesheet_link_tag 'bootstrap', 'mycss' %>
   <%= stylesheet_link_tag 'token-input-facebook' %>
   <%= javascript_include_tag :default, 'jquery.tokeninput' %>
    
 </head>
 <body>
- 
-
+  
+  
 <ul >
 <h3 ><%= link_to "Cube", root_path %></h3>
     <h5 >Collaborate and Understand - The best way of Education</h5>

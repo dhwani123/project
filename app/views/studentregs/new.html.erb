@@ -12,138 +12,291 @@
     $( "#datepicker" ).datepicker();
     $( "#datepicker1" ).datepicker();
   });
+  $(function() {  
+
+    var fieldsetCount = $('#formElem').children().length;
+  
+  /*
+  current position of fieldset / navigation link
+  */
+  var current   = 1;
+    
+  /*
+  sum and save the widths of each one of the fieldsets
+  set the final sum as the total width of the steps element
+  */
+  var stepsWidth  = 0;
+    var widths    = new Array();
+  $('#steps .step').each(function(i){
+        var $step     = $(this);
+    widths[i]     = stepsWidth;
+        stepsWidth    += $step.width();
+    });
+  $('#steps').width(stepsWidth);
+  
+  /*
+  to avoid problems in IE, focus the first input of the form
+  */
+  $('#formElem').children(':first').find(':input:first').focus(); 
+  
+  /*
+  show the navigation bar
+  */
+  $('#navigation').show();
+  
+  /*
+  when clicking on a navigation link 
+  the form slides to the corresponding fieldset
+  */
+    $('#navigation a').bind('click',function(e){
+    var $this = $(this);
+    var prev  = current;
+    $this.closest('ul').find('li').removeClass('selected');
+        $this.parent().addClass('selected');
+    /*
+    we store the position of the link
+    in the current variable 
+    */
+    current = $this.parent().index() + 1;
+    /*
+    animate / slide to the next or to the corresponding
+    fieldset. The order of the links in the navigation
+    is the order of the fieldsets.
+    Also, after sliding, we trigger the focus on the first 
+    input element of the new fieldset
+    If we clicked on the last link (confirmation), then we validate
+    all the fieldsets, otherwise we validate the previous one
+    before the form slided
+    */
+        $('#steps').stop().animate({
+            marginLeft: '-' + widths[current-1] + 'px'
+        },500,function(){
+      if(current == fieldsetCount)
+        validateSteps();
+      else
+        validateStep(prev);
+      $('#formElem').children(':nth-child('+ parseInt(current) +')').find(':input:first').focus();  
+    });
+        e.prevenpefault();
+    });
+  
+  /*
+  clicking on the tab (on the last input of each fieldset), makes the form
+  slide to the next step
+  */
+  $('#formElem > fieldset').each(function(){
+    var $fieldset = $(this);
+    $fieldset.children(':last').find(':input').keydown(function(e){
+      if (e.which == 9){
+        $('#navigation li:nth-child(' + (parseInt(current)+1) + ') a').click();
+        /* force the blur for validation */
+        $(this).blur();
+        e.prevenpefault();
+      }
+    });
+  });
+  
+  /*
+  validates errors on all the fieldsets
+  records if the Form has errors in $('#formElem').data()
+  */
+  function validateSteps(){
+    var FormErrors = false;
+    for(var i = 1; i < fieldsetCount; ++i){
+      var error = validateStep(i);
+      if(error == -1)
+        FormErrors = true;
+    }
+    $('#formElem').data('errors',FormErrors); 
+  }
+  
+  /*
+  validates one fieldset
+  and returns -1 if errors found, or 1 if not
+  */
+  function validateStep(step){
+    if(step == fieldsetCount) return;
+    
+    var error = 1;
+    var hasError = false;
+    $('#formElem').children(':nth-child('+ parseInt(step) +')').find(':input:not(button)').each(function(){
+      var $this     = $(this);
+      var valueLength = jQuery.trim($this.val()).length;
+      
+      if(valueLength == ''){
+        hasError = true;
+        $this.css('background-color','#FFEDEF');
+      }
+      else
+        $this.css('background-color','#FFFFFF');  
+    });
+    var $link = $('#navigation li:nth-child(' + parseInt(step) + ') a');
+    $link.parent().find('.error,.checked').remove();
+    
+    var valclass = 'checked';
+    if(hasError){
+      error = -1;
+      valclass = 'error';
+    }
+    $('<span class="'+valclass+'"></span>').insertAfter($link);
+    
+    return error;
+  }
+  
+  /*
+  if there are errors don't allow the user to submit
+  */
+  $('#registerButton').bind('click',function(){
+    if($('#formElem').data('errors')){
+      alert('Please correct the errors in the Form');
+      return false;
+    } 
+  });
+});
   </script>
-<h3><i><u>REGISTRATION FORM FOR STUDENTS</u></i></h3>
+  <%= stylesheet_link_tag 'bootstrap' %></head>
 
+    <body>
+<h3>REGISTRATION FOR STUDENTS</h3>
+<div id = "wrapper">
+<div id = "steps" >
+<div id = "formElem" >
 <%= form_for (@studentreg) do |f| %>
-<fieldset>
+<fieldset class= "step">
 <legend> Personal Details</legend>
-<table>
-<tr>
-<td><%= f.label :firstname %></td><td></td><td></td>
-<td><%= f.text_field :firstname %></td>
-<td></td><td></td>
-<td><%= f.label :middlename %></td><td></td><td></td>
-<td><%= f.text_field :middlename %></td>
-<td></td><td></td>
-<td><%= f.label :lastname %></td><td></td><td></td>
-<td><%= f.text_field :lastname %></td>
-</tr></table>
-<table>
-<tr><td><div>
-<%= f.label :Address %></td><td></td><td></td>
-<td><%= f.text_area :address,:size=>'50', :rows=>'70'%>
-</div><td></td><td></td>
-<td><div>
-<p><%= f.label :DateOfBirth %></p></div></td><td></td><td></td>
-<td><p><input type="text" id="datepicker"></p>
-</div></td>
-</tr></table>
-<table>
-<tr>
-<td><div>
-<%= f.label :grade %></td><td></td><td></td>
-<td><%= f.text_field :grade %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :division %></td><td></td><td></td>
-<td><%= f.select :division, options_for_select(%w[A B C D]) %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :gender %></td><td></td><td></td>
-<td><%= f.select :gender, options_for_select(%w[Male Female]) %>
-</div></td></tr></table>
-<table>
-<tr>
-<td><div>
-<%= f.label :contactnumber %></td><td></td><td></td>
-<td><%= f.text_field :contactnumber %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :bloodgroup %></td><td></td><td></td>
-<td><%= f.select :bloodgroup, options_for_select(%w[O+ O- A+ A- B+ B- AB+ AB-]) %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :dateofjoining %></td><td></td><td></td>
- <td><p><input type="text" id="datepicker1"></p>
-</div></td></tr></table>
-<table><tr><td><div>
-<%= f.label :fname %></td><td></td><td></td>
-<td><%= f.text_field :fname %>
-</td></tr></table>
-</div>
+<table cellspacing ="10" cellpadding = '10'>
+
+<p><%= f.label :firstname %><%= f.text_field :firstname %><%= f.label :middlename %><%= f.text_field :middlename %>
+<%= f.label :lastname %><%= f.text_field :lastname %>
+<%= f.label :grade %>
+<%= f.text_field :grade %>
+<%= f.label :division %>
+<%= f.select :division, options_for_select(%w[A B C D]) %>
+<%= f.label :gender %>
+<%= f.select :gender, options_for_select(%w[Male Female]) %>
+</p>
+</table>
 </fieldset>
-<table>
-<tr>
-<td><div>
-<%= f.label :fqualification %></td><td></td><td></td>
-<td><%= f.text_field :fqualification %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :foccupation %></td><td></td><td></td>
-<td><%= f.text_field :foccupation %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :fincome %></td><td></td><td></td>
-<td><%= f.text_field :fincome %>
-</div></td></tr></table>
-<table><tr>
-<td><div>
-<%= f.label :fcontactnumber %></td><td></td><td></td>
-<td><%= f.text_field :fcontactnumber %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :femailid %></td><td></td><td></td>
-<td><%= f.text_field :femailid %>
-</div></td></tr></table>
-<table>
-<tr>
-<td><div>
-<%= f.label :mname %></td><td></td><td></td>
-<td><%= f.text_field :mname %>
-</div></td></tr></table>
-<table>
-<tr>
-<td><div>
-<%= f.label :mqualification %></td><td></td><td></td>
-<td><%= f.text_field :mqualification %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :moccupation %></td><td></td><td></td>
-<td><%= f.text_field :moccupation %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :mincome %></td><td></td><td></td>
-<td><%= f.text_field :mincome %>
-</div></td></tr></table>
-<table>
-<tr>
-<td><div>
-<%= f.label :mcontactnumber %></td><td></td><td></td>
-<td><%= f.text_field :mcontactnumber %>
-</div></td>
-<td></td><td></td>
-<td><div>
-<%= f.label :memailid %></td><td></td><td></td>
-<td><%= f.text_field :memailid %>
-</div></td></tr></table>
+<fieldset class= "step">
+  <legend> Other details</legend>
+  <p><%= f.label :Address %>
+<%= f.text_area :address,:size=>'50', :rows=>'70'%>
+<%= f.label :contactnumber %>
+
+<%= f.text_field :contactnumber %>
+
+<%= f.label :DateOfBirth %>
+<input type="text" id="datepicker">
+
+<%= f.label :bloodgroup %>
+
+<%= f.select :bloodgroup, options_for_select(%w[O+ O- A+ A- B+ B- AB+ AB-]) %>
+
+<%= f.label :dateofjoining %>
+
+ <input type="text" id="datepicker1">
+</p>
+
+
+</fieldset>
+<fieldset class= "step">
+<legend> Father's Details</legend>
+<table cellspacing ="10" cellpadding = '10'><p>
+<%= f.label :fname , "Name:"%>
+<%= f.text_field :fname %>
+
+
+
+<%= f.label :fqualification, "Qualification" %>
+<%= f.text_field :fqualification %>
+
+
+
+<%= f.label :foccupation, "Occupation" %>
+<%= f.text_field :foccupation %>
+
+<%= f.label :fincome, "Income" %>
+<%= f.text_field :fincome %>
+
+
+<%= f.label :fcontactnumber , "Contact Number"%>
+<%= f.text_field :fcontactnumber %>
+
+<%= f.label :femailid ,"email id"%>
+<%= f.text_field :femailid %></p></table>
+</fieldset>
+
+<fieldset class = "step"><legend> Mother's Details</legend>
+<table cellspacing ="10" cellpadding = '10'>
+
+<p>
+<%= f.label :mname,"Name" %>
+<%= f.text_field :mname %>
+</p>
+
+
+<p>
+<%= f.label :mqualification, "Qualification" %>
+<%= f.text_field :mqualification %>
+</p>
+
+<p>
+<%= f.label :moccupation, "Occupation" %>
+<%= f.text_field :moccupation %>
+</p>
+
+<p>
+<%= f.label :mincome, "Income" %>
+<%= f.text_field :mincome %>
+</p>
+
+<p>
+<%= f.label :mcontactnumber , "Contact Number"%>
+<%= f.text_field :mcontactnumber %>
+</p>
+
+<p>
+<%= f.label :memailid , "Email id"%>
+<%= f.text_field :memailid %>
+</p></table>
+</fieldset>
 </head>
-<body>
 
 
-<div class= "action">
+<fieldset class= "step" ><legend> Confirm </legend>
+<p class= "action" id="registerButton">
 	<%= f.submit "Register" %>
+</p>
+</fieldset>
+
+<% end %>
 </div>
+
+
+<div id="navigation1" style="display:block;">
+                    <ul>
+                        <li class="selected">
+                            <a href="#">Personal Details</a>
+                        </li>
+                        <li>
+                            <a href="#">Other Details</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Father's Details</a>
+                        </li>
+                        <li>
+                            <a href="#">Mother's Details</a>
+                        </li>
+                        <li>
+                            <a href="#">Confirm</a>
+                        </li>
+                    </ul>
+</div>
+</div>
+</div>
+
 </body>
 </html>
-<% end %>
+
 

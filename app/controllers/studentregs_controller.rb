@@ -6,8 +6,9 @@ class StudentregsController < ApplicationController
 
   def create
 
-    @studentreg = Studentreg.new(params[:studentreg])
-    @studentreg.email = current_cubestudent.email
+    @studentreg = Studentreg.new(studentreg_params)
+
+    @studentreg.myemail = current_cubestudent.email
     if @studentreg.save
             redirect_to @studentreg
     end
@@ -36,6 +37,10 @@ class StudentregsController < ApplicationController
 
   def edit
 
+  end
+  private
+  def studentreg_params
+    params.require(:studentreg).permit(:firstname, :middlename, :lastname, :gender, :bloodgroup, :address, :contactnumber, :dateofbirth, :dateofjoining, :grade, :division)
   end
 
   end
