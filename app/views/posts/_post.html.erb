@@ -1,19 +1,27 @@
 <div class = "container">
 
-<div class="col-md-12"><h4><%= link_to_unless_current post.title, post %></h4>
-<p><%= simple_format post.body %></p>
+<div class="col-md-12"><h2><%= link_to_unless_current post.title, post %></h2>
+<h3><%= simple_format post.body %></h3>
 <div>
 
 <span class = "badge"> Created : <%= post.created_at.strftime("%d/%m/%Y") %> by <%= post.postedby %></span>
 	</p>
 	<% if current_cubestudent.email == post.postedby %>
-			<div class="pull-right"><span class =" btn btn-primary"><%= link_to 'Edit', edit_post_path(post) %> </span>
-			<span class="btn btn-danger"><%= link_to 'Delete', post, method: :delete %></span></div>
-			</p>
+			<div class="pull-right"><%= link_to edit_post_path(post), :class => "btn btn-info btn-xs", remote: true do %> 
+			<span class="glyphicon glyphicon-edit"></span> Edit <% end %>
+			<%= link_to post, method: :delete, :class => "btn btn-danger btn-xs", remote: true do %>
+			<i class="glyphicon glyphicon-trash"></i> Delete 
+			<% end %>
+		</div>
 	<% end %>
 
 <% if current_cubestudent && !current_cubestudent.voted_for?(post) %>
-|<%= link_to "up", vote_post_path(post, type: "up"), method:"post" %>
-|<%= link_to "down", vote_post_path(post, type: "down"), method: "post" %>
+<%= link_to vote_post_path(post, type: "up"), method: :post, class: "btn btn-label btn-success", remote: true do %>
+ <i class="glyphicon glyphicon-thumbs-up"></i> Up
+<% end %>
+
+<%= link_to vote_post_path(post, type: "down"), method: :post, class: "btn btn-label btn-danger", remote: true do%>
+<i class="glyphicon glyphicon-thumbs-down"></i> Down
+<% end %>
 <% end %>
  
