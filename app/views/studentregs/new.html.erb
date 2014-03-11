@@ -17,7 +17,7 @@
     var fieldsetCount = $('#formElem').children().length;
   
   /*
-  current position of fieldset / navigation link
+  current position of fieldset / navigation1 link
   */
   var current   = 1;
     
@@ -40,15 +40,15 @@
   $('#formElem').children(':first').find(':input:first').focus(); 
   
   /*
-  show the navigation bar
+  show the navigation1 bar
   */
-  $('#navigation').show();
+  $('#navigation1').show();
   
   /*
-  when clicking on a navigation link 
+  when clicking on a navigation1 link 
   the form slides to the corresponding fieldset
   */
-    $('#navigation a').bind('click',function(e){
+    $('#navigation1 a').bind('click',function(e){
     var $this = $(this);
     var prev  = current;
     $this.closest('ul').find('li').removeClass('selected');
@@ -60,7 +60,7 @@
     current = $this.parent().index() + 1;
     /*
     animate / slide to the next or to the corresponding
-    fieldset. The order of the links in the navigation
+    fieldset. The order of the links in the navigation1
     is the order of the fieldsets.
     Also, after sliding, we trigger the focus on the first 
     input element of the new fieldset
@@ -88,7 +88,7 @@
     var $fieldset = $(this);
     $fieldset.children(':last').find(':input').keydown(function(e){
       if (e.which == 9){
-        $('#navigation li:nth-child(' + (parseInt(current)+1) + ') a').click();
+        $('#navigation1 li:nth-child(' + (parseInt(current)+1) + ') a').click();
         /* force the blur for validation */
         $(this).blur();
         e.prevenpefault();
@@ -130,7 +130,7 @@
       else
         $this.css('background-color','#FFFFFF');  
     });
-    var $link = $('#navigation li:nth-child(' + parseInt(step) + ') a');
+    var $link = $('#navigation1 li:nth-child(' + parseInt(step) + ') a');
     $link.parent().find('.error,.checked').remove();
     
     var valclass = 'checked';
@@ -271,9 +271,8 @@
 
 <% end %>
 </div>
-
-
-<div id="navigation1" style="display:block;">
+</div>
+<div id="navigation1" style="display:none;">
                     <ul>
                         <li class="selected">
                             <a href="#">Personal Details</a>

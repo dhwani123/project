@@ -69,7 +69,7 @@
     border-radius:10px;
     border:2px solid #fff;
     background-color:#f9f9f9;
-    width:600px;
+    width:675px;
     overflow:hidden;
 }
 #steps{
@@ -90,7 +90,7 @@
 #navigation1 ul{
     list-style:none;
   float:left;
-  margin-left:22px;
+  margin-left:12px;
 }
 #navigation1 ul li a{
     display:block;
