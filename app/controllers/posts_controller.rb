@@ -21,22 +21,6 @@ class PostsController < ApplicationController
     end
   end
 
-  
-
-  
-  def vote
-    value = params[:type] == "up" ? 1 : -1
-    @post = Post.find(params[:id])
-    @post.add_evaluation(:votes, value, current_cubestudent)
-    @post.add_or_update_evaluation(:votes, value, current_cubestudent)
-    redirect_to :back, notice: "Thank you for voting!"
-  end
-
-   
-
-def current_user
-end
-
   def destroy
     @post.destroy
     respond_to do |format|
@@ -52,25 +36,33 @@ end
   def index
 
     @posts = Post.order("title").page(params[:page]).per(5)
-    
-  end
+    @posts = Post.search(params[:search])
+   end
 
   def show
     @post = Post.find(params[:id])
-
-
-    @posts = Post.search(params[:search])
     if params[:tag]
     @posts = Post.tagged_with(params[:tag])
     end   
   end
 
   
-#GET /posts/1/edit
+  #GET /posts/1/edit
   def edit
    @post = Post.find(params[:id]) 
   end
 
+  def vote
+    if params[:type] == "up"
+      value = 1
+    else
+      value = -1
+    end
+    
+    @post = Post.find(params[:id])
+    @post.add_or_update_evaluation(:votes, value, current_cubestudent)
+    redirect_to :back, notice: "Thank you for voting!"
+  end
 
   def update
     respond_to do |format|

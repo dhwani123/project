@@ -3,6 +3,8 @@
 <%= @studentreg.firstname %> 
 </p>
 
+<%= image_tag @studentreg.avatar_url if @studentreg.avatar? %>
+
 <p>
 <b>DateOfbirth : </b>
 <%= @studentreg.dateofbirth %>

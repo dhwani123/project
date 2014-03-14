@@ -1,13 +1,17 @@
 Project::Application.routes.draw do
   
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
  resources :subjects
 
   resources :posts do
    resources :comments, :only => [:create]
-   member { post :vote }
-   end
+  end
+
+  resources :posts do
+    member { get :vote }
+  end
 
 
   get "teacherregs/new"
@@ -17,11 +21,6 @@ Project::Application.routes.draw do
   get "teacherregs/edit"
   get "teacherregs/update"
   get "teacherregs/destroy"
-resources :posts do
-  resources :comments, :only => [:create]
-member { post :vote }
-end
-
   get "posts/create"
   get "posts/destroy"
   get "posts/new"
@@ -47,9 +46,7 @@ end
   get "contactus", :to => "pages#contactus" 
 
   resources :studentregs
-  resources :posts do 
-    member {post :vote}
-  end
+ 
   root to: 'pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -15,6 +15,8 @@ def create
 	
 end
 end
+def average
+  end
 end
 
 

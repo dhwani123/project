@@ -9,9 +9,13 @@ class StudentregsController < ApplicationController
     @studentreg = Studentreg.new(studentreg_params)
 
     @studentreg.myemail = current_cubestudent.email
+    respond_to do |format|
     if @studentreg.save
-            redirect_to @studentreg
+    format.html { redirect_to @studentreg, notice: 'student was successfully created.' }
+    else
+        format.html { render action: 'new' }
     end
+  end
   end
 
   def show
@@ -38,9 +42,11 @@ class StudentregsController < ApplicationController
   def edit
 
   end
+  
   private
+
   def studentreg_params
-    params.require(:studentreg).permit(:firstname, :middlename, :lastname, :gender, :bloodgroup, :address, :contactnumber, :dateofbirth, :dateofjoining, :grade, :division)
+    params.require(:studentreg).permit(:firstname, :middlename, :lastname, :gender, :bloodgroup, :address, :contactnumber, :dateofbirth, :dateofjoining, :grade, :division, :fname, :fqualification, :foccupation, :fincome, :fcontactnumber, :femailid, :mname, :mqualification, :moccupation, :mincome, :mcontactnumber, :memailid, :avatar)
   end
 
   end

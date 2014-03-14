@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310170408) do
+ActiveRecord::Schema.define(version: 20140314101241) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -114,6 +114,26 @@ ActiveRecord::Schema.define(version: 20140310170408) do
   add_index "cubeteachers", ["email"], name: "index_cubeteachers_on_email", unique: true, using: :btree
   add_index "cubeteachers", ["reset_password_token"], name: "index_cubeteachers_on_reset_password_token", unique: true, using: :btree
 
+  create_table "cubeusers", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "rolable_type"
+    t.integer  "rolable_id"
+  end
+
+  add_index "cubeusers", ["email"], name: "index_cubeusers_on_email", unique: true, using: :btree
+  add_index "cubeusers", ["reset_password_token"], name: "index_cubeusers_on_reset_password_token", unique: true, using: :btree
+
   create_table "pages", force: true do |t|
     t.string   "title"
     t.string   "permalink"
@@ -131,6 +151,7 @@ ActiveRecord::Schema.define(version: 20140310170408) do
     t.datetime "updated_at"
     t.integer  "cubestudent_id"
     t.string   "subject_tokens"
+    t.integer  "votes"
   end
 
   create_table "rs_evaluations", force: true do |t|
@@ -203,11 +224,35 @@ ActiveRecord::Schema.define(version: 20140310170408) do
     t.string   "memailid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string   "myemail"
+    t.string   "avatar"
+  end
+
+  create_table "students", force: true do |t|
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.string   "gender"
+    t.string   "grade"
+    t.string   "division"
+    t.string   "bloodgroup"
+    t.string   "contactnumber"
+    t.text     "address"
+    t.string   "fname"
+    t.string   "fqualification"
+    t.string   "foccupation"
+    t.string   "fcontact"
+    t.string   "fincome"
+    t.string   "femail"
+    t.string   "mname"
+    t.string   "mqualification"
+    t.string   "moccupation"
+    t.string   "mcontact"
+    t.string   "mincome"
+    t.string   "memail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "dateofbirth"
   end
 
   create_table "subjects", force: true do |t|
@@ -234,6 +279,23 @@ ActiveRecord::Schema.define(version: 20140310170408) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "teachers", force: true do |t|
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.string   "gender"
+    t.date     "dateofbirth"
+    t.date     "dateofjoining"
+    t.string   "bloodgroup"
+    t.string   "contact"
+    t.string   "address"
+    t.string   "qualification"
+    t.string   "experience"
+    t.string   "specialization"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "views", force: true do |t|
     t.string   "email",                  default: "", null: false

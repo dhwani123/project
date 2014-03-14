@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/NARKOZ/activerecord-reputation-system.git
-  revision: 01197ad78cac3136317b2884b61ed3da34c607d0
-  branch: rails4
-  specs:
-    activerecord-reputation-system (2.0.2)
-
-GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: 9ca081f47ab447793afbd0cb2ba1eded68c26f10
   specs:
@@ -25,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 96f416f8f1481117195cf5a9b1185c6f3c47e418
+  revision: 965ebd304f74c66a020c03599709ab264914f7f1
   specs:
     twitter-bootstrap-rails (2.2.8)
       actionpack (>= 3.1)
@@ -54,6 +47,7 @@ GEM
       activesupport (= 4.0.0)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
+    activerecord-reputation-system (2.0.2)
     activesupport (4.0.0)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -73,6 +67,11 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.1.4)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -148,11 +147,11 @@ GEM
       json (~> 1.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
-    sass (3.3.0)
-      rake
-    sass-rails (4.0.1)
+    sass (3.2.15)
+    sass-rails (4.0.2)
       railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0.0)
     sdoc (0.4.0)
       json (~> 1.8)
@@ -187,8 +186,9 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  activerecord-reputation-system!
+  activerecord-reputation-system
   bootstrap-datepicker-rails
+  carrierwave
   coffee-rails (~> 4.0.0)
   devise
   execjs

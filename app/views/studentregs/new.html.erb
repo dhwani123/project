@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>jQuery UI Datepicker - Default functionality</title>
+ 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -161,7 +161,7 @@
 <div id = "wrapper">
 <div id = "steps" >
 <div id = "formElem" >
-<%= form_for (@studentreg) do |f| %>
+<%= form_for (@studentreg), :html => { :multipart => true } do |f| %>
 <fieldset class= "step">
 <legend> Personal Details</legend>
 <table cellspacing ="10" cellpadding = '10'>
@@ -180,17 +180,17 @@
 <fieldset class= "step">
   <legend> Other details</legend>
   <p><%= f.label :Address %>
-<%= f.text_area :address,:size=>'50', :rows=>'70'%>
+<%= f.text_area :address, :cols => '70',:rows =>'3'%>
 <%= f.label :contactnumber %>
 
 <%= f.text_field :contactnumber %>
-
 <%= f.label :DateOfBirth %>
 <input type="text" id="datepicker">
 
 <%= f.label :bloodgroup %>
 
 <%= f.select :bloodgroup, options_for_select(%w[O+ O- A+ A- B+ B- AB+ AB-]) %>
+<%= f.label :avatar, "Profile pic"%><%= f.file_field :avatar %> 
 
 <%= f.label :dateofjoining %>
 
@@ -232,30 +232,20 @@
 <p>
 <%= f.label :mname,"Name" %>
 <%= f.text_field :mname %>
-</p>
-
-
-<p>
 <%= f.label :mqualification, "Qualification" %>
 <%= f.text_field :mqualification %>
-</p>
 
-<p>
 <%= f.label :moccupation, "Occupation" %>
 <%= f.text_field :moccupation %>
-</p>
 
-<p>
 <%= f.label :mincome, "Income" %>
 <%= f.text_field :mincome %>
-</p>
 
-<p>
 <%= f.label :mcontactnumber , "Contact Number"%>
 <%= f.text_field :mcontactnumber %>
-</p>
 
-<p>
+
+
 <%= f.label :memailid , "Email id"%>
 <%= f.text_field :memailid %>
 </p></table>
@@ -264,8 +254,11 @@
 
 
 <fieldset class= "step" ><legend> Confirm </legend>
-<p class= "action" id="registerButton">
-	<%= f.submit "Register" %>
+
+
+
+<p class= "action" >
+	<%= f.submit "Register" , :class => "btn btn-success"%>
 </p>
 </fieldset>
 

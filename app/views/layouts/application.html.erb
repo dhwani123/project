@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-$("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-});
-</script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
+  
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   
   <%= stylesheet_link_tag 'bootstrap', 'mycss' %>
@@ -30,9 +24,9 @@ $("#menu-toggle").click(function(e) {
     <div class="muted">
   <% if cubestudent_signed_in? %>
     Signed in as <%= current_cubestudent.email %>. Not you? 
-    <%= link_to "Sign out", destroy_cubestudent_session_path, :method => :delete %>
+    <%= link_to "Sign out", destroy_cubestudent_session_path, method: :delete %>
     <%= link_to "Profile", new_studentreg_path %>
-     
+     <%= current_cubestudent.reputation_for(:votes).to_i %>
     
     <%= link_to "Question", posts_path %>
   <% else %>
