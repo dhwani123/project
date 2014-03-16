@@ -4,7 +4,7 @@ class Cubestudent < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessible :email, :password, :password_confirmation
-
+  acts_as_tagger
    has_one :studentreg
    has_reputation :votes, source: { reputation: :votes, of: :posts }, aggregated_by: :sum
    has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source

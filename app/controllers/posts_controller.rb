@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
- 
-  @posts = Post.find(:all, :order => 'posts.created_at DESC')
+  
+  
 
   def create
     @post = Post.new(post_params)
@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
@@ -21,6 +22,7 @@ class PostsController < ApplicationController
     end
   end
 
+  
   def destroy
     @post.destroy
     respond_to do |format|
@@ -34,16 +36,26 @@ class PostsController < ApplicationController
   end
 
   def index
-
-    @posts = Post.order("title").page(params[:page]).per(5)
+    if params[:tag]
+     @posts = Post.tagged_with(params[:tag])
+    else 
+    @posts = Post.find(:all, :order => 'posts.created_at DESC')
     @posts = Post.search(params[:search])
+  end
+
    end
+
+
+   def tags
+    tags = Post.tokens(params[:q])
+    respond_to do |format|
+      format.json { render json: @tags }
+    end
+  end
 
   def show
     @post = Post.find(params[:id])
-    if params[:tag]
-    @posts = Post.tagged_with(params[:tag])
-    end   
+     
   end
 
   
@@ -84,7 +96,9 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :tag_list)
    end
+
+    
 
 end

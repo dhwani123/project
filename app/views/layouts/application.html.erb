@@ -11,7 +11,7 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   
   <%= stylesheet_link_tag 'bootstrap', 'mycss' %>
-  <%= stylesheet_link_tag 'token-input-facebook' %>
+  <%= stylesheet_link_tag 'token-input-mac' %>
   <%= javascript_include_tag :default, 'jquery.tokeninput' %>
    
 </head>
@@ -26,7 +26,8 @@
     Signed in as <%= current_cubestudent.email %>. Not you? 
     <%= link_to "Sign out", destroy_cubestudent_session_path, method: :delete %>
     <%= link_to "Profile", new_studentreg_path %>
-     <%= current_cubestudent.reputation_for(:votes).to_i %>
+     
+     <%= current_cubestudent.reputation_for( :votes ).to_i %>
     
     <%= link_to "Question", posts_path %>
   <% else %>

@@ -5,6 +5,10 @@ Project::Application.routes.draw do
   ActiveAdmin.routes(self)
  resources :subjects
 
+
+
+ get 'tags/:tag', to: 'posts#index', as: :tag
+
   resources :posts do
    resources :comments, :only => [:create]
   end

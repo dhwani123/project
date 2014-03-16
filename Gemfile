@@ -8,16 +8,11 @@ gem 'kaminari'
 gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails'
 gem 'pg'
 gem 'execjs'
-gem 'therubyracer', :platforms => :ruby
 gem 'protected_attributes'
 gem 'bootstrap-datepicker-rails'
 gem 'activerecord-reputation-system', require: 'reputation_system'
-#gem 'less-rails'
-#gem 'therubyracer', '0.12.0'
-#gem 'mini_magick', '3.5.0'
-#gem 'rmagick'
 gem "carrierwave"
-
+gem 'acts-as-taggable-on'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
