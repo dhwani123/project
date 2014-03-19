@@ -10,7 +10,7 @@
 	<% if current_cubestudent.email == post.postedby %>
 			<div class="pull-right"><%= link_to edit_post_path(post), :class => "btn btn-info btn-xs", remote: true do %> 
 			<span class="glyphicon glyphicon-edit"></span> Edit <% end %>
-			<%= link_to post,:confirm => "are you sure?", method: :delete, :class => "btn btn-danger btn-xs", remote: true do %>
+			<%= link_to post, :confirm => "are you sure?", method: :delete, :class => "btn btn-danger btn-xs", remote: true do %>
 			<i class="glyphicon glyphicon-trash"></i> Delete 
 			<% end %>
 		</div>
@@ -28,6 +28,7 @@
 <i class="glyphicon glyphicon-thumbs-down"></i> Down
 <% end %>
 <% else %>
+
 
 You have already Voted
 

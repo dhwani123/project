@@ -14,8 +14,7 @@ class Post < ActiveRecord::Base
 
 	def self.search(search)
 		if search
-      			Post.where 'title LIKE ? OR body LIKE ? ', "%#{search}%", "%#{search}%" 
-      	      	Post.tagged_with("#{search}")
+      			where 'title LIKE ? OR body LIKE ? ', "%#{search}%", "%#{search}%"
       	else
    				scoped
  		end

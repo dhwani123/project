@@ -21,7 +21,7 @@
   </div>
    <div class="field">
     <%= f.label :tag_list_tokens, "seperated by comma" %><br>
-    <%= f.text_field :tag_list_tokens , data: {load: @post.tags.map{ |t| { id: t.name, name: t.name }}.to_json} %>
+    <%= f.text_field :tag_list_tokens , data: { load: @post.tags.map{ |t| { id: t.name, name: t.name }}.to_json} %>
   </div>
    
  <br/>
@@ -33,7 +33,7 @@
   $('#post_tag_list_tokens').tokenInput('/posts/tag.json', {
     crossDomain: false,
     prePopulate: $('#post_tag_list_tokens').data('load'),
-    theme: 'mac'
+    theme: 'facebook'
     });
 });
   </script>

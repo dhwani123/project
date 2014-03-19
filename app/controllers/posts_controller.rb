@@ -24,10 +24,12 @@ class PostsController < ApplicationController
 
   
   def destroy
-    @post.destroy
+     @post = Post.find(params[:id])
+    
     respond_to do |format|
+      if @post.destroy
       format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      end
     end
   end
 
@@ -39,7 +41,7 @@ class PostsController < ApplicationController
     if params[:tag]
      @posts = Post.tagged_with(params[:tag])
     else 
-    @posts = Post.find(:all, :order => 'posts.created_at DESC')
+    @posts = Post.order("created_at DESC").page(params[:page]).per(5)
     @posts = Post.search(params[:search])
   end
 
