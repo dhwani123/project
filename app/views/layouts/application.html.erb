@@ -3,6 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
@@ -15,28 +16,73 @@
    
 </head>
 <body>
-  
-  
-<ul >
-<h3 ><%= link_to "Cube", root_path %></h3>
-    <h5 >Collaborate and Understand - The best way of Education</h5>
-    <div class="muted">
-  <% if cubestudent_signed_in? %>
-    Signed in as <%= current_cubestudent.email %>. Not you? 
-    <%= link_to "Sign out", destroy_cubestudent_session_path, method: :delete %>
-    <%= link_to "Profile", new_studentreg_path %>
-     
-     <%= current_cubestudent.reputation_for( :votes ).to_i %>
-    
-    <%= link_to "Question", posts_path %>
-  <% else %>
-    <%= link_to "Sign up", new_cubestudent_registration_path %> or <%= link_to "sign in", new_cubestudent_session_path %>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-th-list"></span></a>
+        <a href="#" class="brand">CUBE- Collaborate and Understand Best way of Education</a>
+        <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+                <li class="active"><%= link_to "Home" , root_path %></li>
+                <li><%= link_to "About Us", about_path %></li>
+                <li><%= link_to "Contact Us", contactus_path %></li>
+                <% if cubestudent_signed_in? %>
+                <li><%= current_cubestudent.email %></li>
+                 <% elsif cubeteacher_signed_in? %>
+                 <li><%= current_cubeteacher.email %></li>
+                 <% else %>
+    <li><%= link_to "Sign up", new_cubestudent_registration_path %></li> <li> <%= link_to "sign in", new_cubestudent_session_path %></li>
   <% end %>
+            </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="span2 well">
+    <ul class="nav nav-list">
+<% if cubestudent_signed_in? %>
+        <li class="nav-header"></li>
+        <li class="active"><%= link_to "Question", posts_path %></li>
+        <li><a href="#"><%= link_to "Profile", edit_studentreg_path(current_cubestudent.studentreg) %></li>
+        <li><a href="#"><%= link_to "Sign out", destroy_cubestudent_session_path, method: :delete %>
+    </li>
+    <% elsif cubeteacher_signed_in? %>
+    <li class="active"><%= link_to "Question", posts_path %></li>
+        <li><a href="#"><%= link_to "Assignment Upload",assignments_path %></li>
+        <li><a href="#"><%= link_to "Sign out", destroy_cubeteacher_session_path, method: :delete %>
+    </li>
+       <% end %>       
+        
+    </ul>
 </div>
 
 
+  </div>
+
+
 </ul>
-<div>
-<%= yield %></div>
+<div class="container-fluid"><div class="row-fluid"><div class="span15 well ">
+
+<%= yield %></div></div></div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span4">
+            <p>&copy; 2013 <a href="#">Zetiz Labs</a></p>
+        </div>
+        <div class="span4 text-center">
+            <ul class="nav inline">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="span4 text-right">
+            <p>Powered By Twitter BootStrap 2.3.2</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

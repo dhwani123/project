@@ -13,8 +13,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'activerecord-reputation-system', require: 'reputation_system'
 gem "carrierwave"
 gem 'acts-as-taggable-on'
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'acts_as_votable'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 

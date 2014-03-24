@@ -5,6 +5,14 @@ Project::Application.routes.draw do
   ActiveAdmin.routes(self)
  resources :subjects
 
+resources :posts do
+  resources :comments do
+    member do
+      put "like", to: "comments#upvote"
+      put "dislike", to: "comments#downvote"
+    end
+  end
+end
 
 
  get 'tags/:tag', to: 'posts#index', as: :tag

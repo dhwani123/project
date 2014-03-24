@@ -15,8 +15,21 @@ def create
 	
 end
 end
-def average
-  end
+
+def upvote
+  @post = Post.find(params[:post_id])
+  @comment = @post.comments.find(params[:id])
+  @comment.liked_by current_cubeteacher
+  redirect_to @post
+end
+
+def downvote
+  @post = Post.find(params[:post_id])
+  @comment = @post.comments.find(params[:id])
+  @comment.downvote_from current_cubeteacher
+  redirect_to @post
+end
+
 end
 
 
