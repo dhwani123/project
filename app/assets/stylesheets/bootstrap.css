@@ -7,6 +7,42 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+ .colorcode {
+  background: #358CCE;
+color: #FFF;
+border-radius: 0px;
+ }
+ .jumbotron {
+background: #358CCE;
+color: #FFF;
+border-radius: 0px;
+}
+.jumbotron-sm { padding-top: 24px;
+padding-bottom: 24px;
+padding-left: 10px; }
+.jumbotron small {
+color: #FFF;
+}
+.h1 small {
+font-size: 24px;
+}
+ .destacados{
+    padding: 20px 0;
+  text-align: center;
+}
+.destacados > div > div{
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+.destacados > div:hover > div{
+  margin-top: -10px;
+  border: 1px solid rgb(200, 200, 200);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 2px;
+  background: rgba(200, 200, 200, 0.1);
+  transition: 0.5s;
+}
 #tag_cloud {
   width: 400px;
   line-height: 1.6em;
@@ -513,7 +549,7 @@ a:focus {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  width: 800px;
 }
 
 .span12 {

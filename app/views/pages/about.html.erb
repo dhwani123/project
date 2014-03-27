@@ -1,2 +1,40 @@
-<h1>Pages#about</h1>
-<p>Find me in app/views/pages/about.html.erb</p>
+<div class="container">
+
+  <div class="jumbotron jumbotron-sm">   
+   <div class= "colorcode">
+               <h1 class="h1">
+                   About us 
+                </h1>
+    </div>
+ </div>
+
+
+	<div class="row destacados">
+		<div class="col-md-4">
+    		<div>
+				<%= image_tag("students.png", :alt => "#", :class => "round" , :width => "300") %>
+				<h2>CUBE</h2>
+				<p><b>CUBE</b>- <u><b>C</b></u>ollaborate and <u><b>U</b></u>nderstand, the <u><b>B</b></u>est way of <u><b>E</b></u>ducation.We provide collaborative learning platform for students and teachers.</p>
+				
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div>
+				<%= image_tag("studentreading.png", :alt => "#", :class => "round" , :width => "300") %>
+				<h2>STUDENT</h2>
+				<p><u><b>S</b></u>tudents post their questions and let their queries be solved easily.</p>
+				
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div>
+				<%= image_tag("teacher.png", :alt => "#", :class => "round" , :width => "300") %>
+				<h2>TEACHER</h2>
+				<p><u><b>T</b></u>eachers answer students' queries and give useful information related to respective topics.</p>
+				
+			</div>
+		</div>
+	</div>
+</div>

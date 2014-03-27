@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322105005) do
+ActiveRecord::Schema.define(version: 20140322184057) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -27,6 +30,15 @@ ActiveRecord::Schema.define(version: 20140322105005) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "addassets", force: true do |t|
+    t.string   "item"
+    t.string   "type"
+    t.string   "category"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -46,14 +58,33 @@ ActiveRecord::Schema.define(version: 20140322105005) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "assignments", force: true do |t|
+  create_table "assets", force: true do |t|
     t.string   "name"
-    t.string   "attachment"
-    t.string   "postedby"
-    t.string   "subject"
+    t.string   "location"
+    t.string   "tp"
+    t.string   "cost"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "authorizes", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
+
+  add_index "authorizes", ["email"], name: "index_authorizes_on_email", unique: true, using: :btree
+  add_index "authorizes", ["reset_password_token"], name: "index_authorizes_on_reset_password_token", unique: true, using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -96,10 +127,6 @@ ActiveRecord::Schema.define(version: 20140322105005) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
   add_index "cubestudents", ["email"], name: "index_cubestudents_on_email", unique: true, using: :btree
@@ -123,7 +150,7 @@ ActiveRecord::Schema.define(version: 20140322105005) do
   add_index "cubeteachers", ["email"], name: "index_cubeteachers_on_email", unique: true, using: :btree
   add_index "cubeteachers", ["reset_password_token"], name: "index_cubeteachers_on_reset_password_token", unique: true, using: :btree
 
-  create_table "cubeusers", force: true do |t|
+  create_table "employes", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -136,17 +163,74 @@ ActiveRecord::Schema.define(version: 20140322105005) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "rolable_type"
-    t.integer  "rolable_id"
+    t.string   "username"
   end
 
-  add_index "cubeusers", ["email"], name: "index_cubeusers_on_email", unique: true, using: :btree
-  add_index "cubeusers", ["reset_password_token"], name: "index_cubeusers_on_reset_password_token", unique: true, using: :btree
+  add_index "employes", ["email"], name: "index_employes_on_email", unique: true, using: :btree
+  add_index "employes", ["reset_password_token"], name: "index_employes_on_reset_password_token", unique: true, using: :btree
 
-  create_table "pages", force: true do |t|
-    t.string   "title"
-    t.string   "permalink"
-    t.text     "body"
+  create_table "emps", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
+
+  add_index "emps", ["email"], name: "index_emps_on_email", unique: true, using: :btree
+  add_index "emps", ["reset_password_token"], name: "index_emps_on_reset_password_token", unique: true, using: :btree
+
+  create_table "hrs", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
+
+  add_index "hrs", ["email"], name: "index_hrs_on_email", unique: true, using: :btree
+  add_index "hrs", ["reset_password_token"], name: "index_hrs_on_reset_password_token", unique: true, using: :btree
+
+  create_table "locations", force: true do |t|
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pos", force: true do |t|
+    t.string   "pono"
+    t.string   "invoiceno"
+    t.string   "vname"
+    t.string   "vadd"
+    t.string   "pod"
+    t.string   "requisitioner"
+    t.string   "fwdto"
+    t.string   "approvedby"
+    t.string   "terms"
+    t.string   "name"
+    t.string   "particular"
+    t.string   "unit"
+    t.integer  "qty"
+    t.integer  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -161,6 +245,48 @@ ActiveRecord::Schema.define(version: 20140322105005) do
     t.integer  "cubestudent_id"
     t.string   "subject_tokens"
     t.integer  "votes"
+  end
+
+  create_table "rates", force: true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
+
+  create_table "realassets", force: true do |t|
+    t.string   "name"
+    t.string   "typ"
+    t.string   "locat"
+    t.string   "cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "replications", force: true do |t|
+    t.integer  "sr_no"
+    t.string   "particular"
+    t.string   "unit"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "requisitions", force: true do |t|
+    t.string   "name"
+    t.string   "particular"
+    t.string   "unit"
+    t.integer  "quantity"
+    t.string   "from"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "total"
   end
 
   create_table "rs_evaluations", force: true do |t|
@@ -207,18 +333,24 @@ ActiveRecord::Schema.define(version: 20140322105005) do
   add_index "rs_reputations", ["reputation_name"], name: "index_rs_reputations_on_reputation_name", using: :btree
   add_index "rs_reputations", ["target_id", "target_type"], name: "index_rs_reputations_on_target_id_and_target_type", using: :btree
 
+  create_table "snehs", force: true do |t|
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "studentregs", force: true do |t|
     t.string   "firstname"
     t.string   "middlename"
     t.string   "lastname"
     t.text     "address"
-    t.date     "dateofbirth"
+    t.string   "dateofbirth"
     t.string   "grade"
     t.string   "division"
     t.string   "gender"
     t.string   "contactnumber"
     t.string   "bloodgroup"
-    t.date     "dateofjoining"
+    t.string   "dateofjoining"
     t.string   "fname"
     t.string   "fqualification"
     t.string   "foccupation"
@@ -235,36 +367,6 @@ ActiveRecord::Schema.define(version: 20140322105005) do
     t.datetime "updated_at"
     t.string   "myemail"
     t.string   "avatar"
-    t.integer  "cubestudent_id"
-  end
-
-  add_index "studentregs", ["cubestudent_id"], name: "index_studentregs_on_cubestudent_id", using: :btree
-
-  create_table "students", force: true do |t|
-    t.string   "firstname"
-    t.string   "middlename"
-    t.string   "lastname"
-    t.string   "gender"
-    t.string   "grade"
-    t.string   "division"
-    t.string   "bloodgroup"
-    t.string   "contactnumber"
-    t.text     "address"
-    t.string   "fname"
-    t.string   "fqualification"
-    t.string   "foccupation"
-    t.string   "fcontact"
-    t.string   "fincome"
-    t.string   "femail"
-    t.string   "mname"
-    t.string   "mqualification"
-    t.string   "moccupation"
-    t.string   "mcontact"
-    t.string   "mincome"
-    t.string   "memail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.date     "dateofbirth"
   end
 
   create_table "subjects", force: true do |t|
@@ -292,19 +394,14 @@ ActiveRecord::Schema.define(version: 20140322105005) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "teachers", force: true do |t|
-    t.string   "firstname"
-    t.string   "middlename"
-    t.string   "lastname"
-    t.string   "gender"
-    t.date     "dateofbirth"
-    t.date     "dateofjoining"
-    t.string   "bloodgroup"
-    t.string   "contact"
+  create_table "vendors", force: true do |t|
+    t.string   "name"
     t.string   "address"
-    t.string   "qualification"
-    t.string   "experience"
-    t.string   "specialization"
+    t.string   "email"
+    t.string   "location"
+    t.string   "ph_no"
+    t.string   "mobile_no"
+    t.string   "asset_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
