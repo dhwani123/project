@@ -9,6 +9,7 @@ class AssignmentsController < ApplicationController
 
   def create
   	@assignment = Assignment.new(assignment_params)
+    @assignment.postedby = current_cubeteacher.email
   	if @assignment.save
   		redirect_to assignments_path, notice: "The assignment #{@assignment.name} has been uploaded."
   	else

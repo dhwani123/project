@@ -1,6 +1,10 @@
 Project::Application.routes.draw do
   
-  
+  resources :assignments, only: [:index, :new, :create, :destroy]
+  get "assignments/index"
+  get "assignments/new"
+  get "assignments/create"
+  get "assignments/destroy"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
  resources :subjects

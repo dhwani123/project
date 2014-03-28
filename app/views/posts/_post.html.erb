@@ -7,6 +7,7 @@
 <div > Tags : <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></div>
 
 </p>
+<% if cubestudent_signed_in? %>
 	<% if current_cubestudent.email == post.postedby %>
 			<div class="pull-right"><%= link_to edit_post_path(post), :class => "btn btn-info btn-xs", remote: true do %> 
 			<span class="glyphicon glyphicon-edit"></span> Edit <% end %>
@@ -15,6 +16,9 @@
 			<% end %>
 		</div>
 	<% end %>
+<% elsif cubeteacher_signed_in? %>
+	You can rate answer 
+<% end %>
 
 
 
