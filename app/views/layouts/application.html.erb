@@ -23,6 +23,36 @@
 <%= image_tag('scale.gif',:alt => "scale", :width=> '235') %>
 <%= image_tag("quick.gif",:alt => "CUBE", :width => '125', :align => 'right') %>
 </header>
+<a id="menu-toggle" href="#" class="btn btn-info btn-lg toggle"><i class="glyphicon glyphicon-chevron-left"></i></a>
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    <% if cubestudent_signed_in? %>
+    <li class="sidebar-brand">
+      <a> CUBE </a>
+    </li>
+    <li>
+      <a><%= link_to "Question", posts_path %></a>
+    </li>
+    <li>
+      <a><%= link_to "Profile", edit_studentreg_path(current_cubestudent.studentreg) %></a>
+    </li>
+    <li>
+      <a><%= link_to "Sign out", destroy_cubestudent_session_path, method: :delete %></a>
+    </li>
+     <% elsif cubeteacher_signed_in? %>
+    <li>
+      <a><%= link_to "Question", posts_path %></a>
+    </li>
+    <li>
+      <a><%= link_to "Assignment Upload",assignments_path %></a>
+    </li>
+    <li>
+      <a><%= link_to "Sign out", destroy_cubeteacher_session_path, method: :delete %></a>
+    </li>
+<% end %>
+  </ul>
+</div>
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
@@ -31,48 +61,29 @@
                
         <div class="nav-collapse collapse">
             <ul class="nav pull-right">
-            <% if cubestudent_signed_in? %>
+            
+                <li><%= link_to "Home" , root_path %></li>
+                <li><%= link_to "About Us", about_path %></li>
+                <li><%= link_to "Contact Us", contactus_path %></li>
+                <% if cubestudent_signed_in? %>
                 <li><%= current_cubestudent.email %></li>
                  <% elsif cubeteacher_signed_in? %>
                  <li><%= current_cubeteacher.email %></li>
                  <% else %>
     <li><%= link_to "Sign up", new_cubestudent_registration_path %></li> <li> <%= link_to "sign in", new_cubestudent_session_path %></li>
   <% end %>
-                <li><%= link_to "Home" , root_path %></li>
-                <li><%= link_to "About Us", about_path %></li>
-                <li><%= link_to "Contact Us", contactus_path %></li>
-                
             </ul>
             </div>
         </div>
     </div>
 </div>
 
-<div class="span2 well">
-    <ul class="nav nav-list">
-<% if cubestudent_signed_in? %>
-        <li class="nav-header"></li>
-        <li class="active"><%= link_to "Question", posts_path %></li>
-        <li><a href="#"><%= link_to "Profile", edit_studentreg_path(current_cubestudent.studentreg) %></li>
-        <li><a href="#"><%= link_to "Sign out", destroy_cubestudent_session_path, method: :delete %>
-    </li>
-    <% elsif cubeteacher_signed_in? %>
-    <li class="active"><%= link_to "Question", posts_path %></li>
-        <li><a href="#"><%= link_to "Assignment Upload",assignments_path %></li>
-        <li><a href="#"><%= link_to "Sign out", destroy_cubeteacher_session_path, method: :delete %>
-    </li>
-       <% end %>       
-        
-    </ul>
-</div>
-
-
-  </div>
+  
 
 
 </ul>
-<div class="container-fluid"><div class="span12 well ">
 
+<div class="container-fluid"><div class="span15 well ">
 <%= yield %></div></div>
 
 <div class="container">
@@ -90,5 +101,15 @@
         
     </div>
 </div>
+<script>
+  $("#menu-close").click(function(e) {
+    e.preventDefault();
+    $("#sidebar-wrapper").toggleClass("active");
+  });
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#sidebar-wrapper").toggleClass("active");
+  });
+</script>
 </body>
 </html>
