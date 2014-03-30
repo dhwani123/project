@@ -4,10 +4,10 @@ class Post < ActiveRecord::Base
 	belongs_to :cubestudent
 	belongs_to :cubeteacher
     
-	attr_accessible :body, :title, :tag_list_tokens
+	attr_accessible :body, :title, :tag_list
 	validates_presence_of :body, :title
 	   
-   	attr_reader :tag_list_tokens
+   
 	
    	has_reputation :votes, source: :cubestudent, aggregated_by: :sum
 

@@ -12,7 +12,10 @@ def configure_permitted_parameters
   devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
 end
 
-def after_sign_in_path_for(resource)
+def after_sign_in_path_for(cubeteacher)
 	posts_path
+end
+def after_sign_in_path_for(cubestudent)
+  posts_path
 end
 end

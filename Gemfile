@@ -15,6 +15,7 @@ gem "carrierwave"
 gem 'acts-as-taggable-on'
 gem 'acts_as_votable'
 
+
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 

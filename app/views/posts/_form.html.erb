@@ -20,8 +20,8 @@
     <%= f.text_area :body, :rows => 10, :columns => 10 %>
   </div>
    <div class="field">
-    <%= f.label :tag_list_tokens, "seperated by comma" %><br>
-    <%= f.text_field :tag_list_tokens , data: { load: @post.tags.map{ |t| { id: t.name, name: t.name }}.to_json} %>
+    <%= f.label :tag_list, "seperated by comma" %><br>
+    <%= f.text_field :tag_list  %>
   </div>
    
  <br/>

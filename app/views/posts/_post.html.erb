@@ -17,7 +17,7 @@
 		</div>
 	<% end %>
 <% elsif cubeteacher_signed_in? %>
-	You can rate answer 
+	
 <% end %>
 
 
@@ -32,9 +32,13 @@
 <i class="glyphicon glyphicon-thumbs-down"></i> Down
 <% end %>
 <% else %>
-
+<% if cubestudent_signed_in? %>
 
 You have already Voted
+<% elsif cubeteacher_signed_in? %>
+You can rate answer 
+<% end %>
+
 
 <% end %>
   </em>

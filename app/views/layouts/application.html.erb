@@ -15,25 +15,33 @@
   <%= javascript_include_tag :default, 'jquery.tokeninput' %>
    
 </head>
+
+
 <body>
+<header >
+<%= image_tag("students.png",:alt => "CUBE", :width => '200') %><%= image_tag("the-logo.jpg",:alt => "CUBE", :width => '200') %>
+<%= image_tag('scale.gif',:alt => "scale", :width=> '235') %>
+<%= image_tag("quick.gif",:alt => "CUBE", :width => '125', :align => 'right') %>
+</header>
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <a class="btn btn-navbar">
         <span class="icon-th-list"></span></a>
-        <a href="#" class="brand">CUBE- Collaborate and Understand Best way of Education</a>
+               
         <div class="nav-collapse collapse">
             <ul class="nav pull-right">
-                <li><%= link_to "Home" , root_path %></li>
-                <li><%= link_to "About Us", about_path %></li>
-                <li><%= link_to "Contact Us", contactus_path %></li>
-                <% if cubestudent_signed_in? %>
+            <% if cubestudent_signed_in? %>
                 <li><%= current_cubestudent.email %></li>
                  <% elsif cubeteacher_signed_in? %>
                  <li><%= current_cubeteacher.email %></li>
                  <% else %>
     <li><%= link_to "Sign up", new_cubestudent_registration_path %></li> <li> <%= link_to "sign in", new_cubestudent_session_path %></li>
   <% end %>
+                <li><%= link_to "Home" , root_path %></li>
+                <li><%= link_to "About Us", about_path %></li>
+                <li><%= link_to "Contact Us", contactus_path %></li>
+                
             </ul>
             </div>
         </div>
@@ -63,25 +71,23 @@
 
 
 </ul>
-<div class="container-fluid"><div class="row-fluid"><div class="span15 well ">
+<div class="container-fluid"><div class="span12 well ">
 
-<%= yield %></div></div></div>
+<%= yield %></div></div>
 
 <div class="container">
     <div class="row-fluid">
         <div class="span4">
-            <p>&copy; 2014 <a href="#">BotreeConsulting</a></p>
+            <p>&copy; 2014 BotreeConsulting</p>
         </div>
         <div class="span4 text-center">
             <ul class="nav inline">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><%= link_to "About Us", about_path, :class => "btn btn-label btn-inverse" %></li>
+                <li><%= link_to "Contact Us", contactus_path,:class =>"btn btn-label btn-inverse"%></li>
+                <li><%= link_to "Privacy Policy",root_path, :class => "btn btn-label btn-inverse"%></li>
             </ul>
         </div>
-        <div class="span4 text-right">
-            <p>Powered By Twitter BootStrap 2.3.2</p>
-        </div>
+        
     </div>
 </div>
 </body>

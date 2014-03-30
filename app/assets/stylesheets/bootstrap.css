@@ -7,6 +7,9 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+ {
+  background-color: LightBlue;
+ }
  .colorcode {
   background: #358CCE;
 color: #FFF;
@@ -306,13 +309,21 @@ details,
 figcaption,
 figure,
 footer,
-header,
 hgroup,
 nav,
 section {
+  
   display: block;
 }
 
+header {
+  display: block;
+  align: center;
+  height: 110px;
+  background: #ffffff;
+  position: auto;
+  z-index: 10;
+}
 audio,
 canvas,
 video {
@@ -487,7 +498,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #333333;
-  background-color: #ffffff;
+  background-color: DarkCyan;
 }
 
 a {
@@ -585,6 +596,7 @@ a:focus {
 }
 
 .span4 {
+  color:White;
   width: 300px;
 }
 
@@ -892,6 +904,7 @@ a:focus {
 }
 
 .container-fluid {
+  background-color: 
   padding-right: 20px;
   padding-left: 20px;
   *zoom: 1;
@@ -2320,6 +2333,19 @@ table {
   border-left: 1px solid #dddddd;
 }
 
+body { margin-top:30px; }
+hr.message-inner-separator
+{
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 13px;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
 .table-bordered caption + thead tr:first-child th,
 .table-bordered caption + tbody tr:first-child th,
 .table-bordered caption + tbody tr:first-child td,
@@ -4253,6 +4279,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .nav-list {
+  position: auto;
   padding-right: 15px;
   padding-left: 15px;
   margin-bottom: 0;
@@ -4676,6 +4703,7 @@ input[type="submit"].btn.btn-mini {
 .nav-collapse.collapse {
   height: auto;
   overflow: visible;
+  background-color: Black;
 }
 
 .navbar .brand {
@@ -4808,11 +4836,12 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-fixed-top,
 .navbar-fixed-bottom {
-  position: fixed;
+  position: auto;
   right: 0;
   left: 0;
   z-index: 1030;
   margin-bottom: 0;
+
 }
 
 .navbar-fixed-top .navbar-inner,
