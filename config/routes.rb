@@ -1,5 +1,9 @@
 Project::Application.routes.draw do
   
+  resources :feedbacks
+
+  get "cubestudents/index"
+  get "cubestudents/show"
   resources :assignments, only: [:index, :new, :create, :destroy]
   get "assignments/index"
   get "assignments/new"
@@ -12,8 +16,8 @@ Project::Application.routes.draw do
 resources :posts do
   resources :comments do
     member do
-      put "like", to: "comments#upvote"
-      put "dislike", to: "comments#downvote"
+      get "like", to: "comments#upvote"
+      get "dislike", to: "comments#downvote"
     end
   end
 end
@@ -52,7 +56,7 @@ end
   get "studentregs/update"
   get "studentregs/destroy"
   devise_for :cubeprincipals
-  devise_for :cubestudents
+  devise_for :cubestudents, controllers: { registrations: 'cubestudents/registrations' }
   devise_for :cubeteachers
  
 

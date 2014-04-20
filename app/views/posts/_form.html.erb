@@ -20,21 +20,12 @@
     <%= f.text_area :body, :rows => 10, :columns => 10 %>
   </div>
    <div class="field">
-    <%= f.label :tag_list, "seperated by comma" %><br>
+    <%= f.label :tag_list, "Subject(seperated by comma)" %><br>
     <%= f.text_field :tag_list  %>
   </div>
    
  <br/>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Post Question", :class=> "btn btn-label btn-primary"%>
   </div>
-  <script>
-  $(function() {
-  $('#post_tag_list_tokens').tokenInput('/posts/tag.json', {
-    crossDomain: false,
-    prePopulate: $('#post_tag_list_tokens').data('load'),
-    theme: 'facebook'
-    });
-});
-  </script>
-<% end %>
+  <% end %>

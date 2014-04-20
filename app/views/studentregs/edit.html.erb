@@ -1,2 +1,73 @@
-<h1>Studentregs#edit</h1>
-<p>Find me in app/views/studentregs/edit.html.erb</p>
+<!doctype html>
+<html><head></head><body><div class="container">
+    <div class="pricing-table pricing-three-column row">
+        <div class="plan col-sm-4 col-lg-4">
+          <div class="plan-name-bronze">
+         <%= form_for (@studentreg), :html => { :multipart => true } do |f| %>
+            <h2>Student's Details</h2>
+            <p><%= f.label :firstname %><%= f.text_field :firstname %><%= f.label :middlename %><%= f.text_field :middlename %>
+<%= f.label :lastname %><%= f.text_field :lastname %>
+<%= f.label :grade %>
+<%= f.text_field :grade %>
+<%= f.label :division %>
+<%= f.select :division, options_for_select(%w[A B C D]) %>
+<%= f.label :gender %>
+<%= f.select :gender, options_for_select(%w[Male Female]) %>
+</p>          </div></div>
+          
+        </div>
+        <div style="z-index:55;" class="plan col-sm-4 col-lg-4">
+          <div class="plan-name-silver">
+            <h2>Father's Details</h2>
+            <%= f.label :fname , "Name:"%>
+<%= f.text_field :fname %>
+
+
+
+<%= f.label :fqualification, "Qualification" %>
+<%= f.text_field :fqualification %>
+
+
+
+<%= f.label :foccupation, "Occupation" %>
+<%= f.text_field :foccupation %>
+
+<%= f.label :fincome, "Income" %>
+<%= f.text_field :fincome %>
+
+
+<%= f.label :fcontactnumber , "Contact Number"%>
+<%= f.text_field :fcontactnumber %>
+
+<%= f.label :femailid ,"email id"%>
+<%= f.text_field :femailid %></p>
+          </div>
+        </div></div>
+        <div class="plan col-sm-4 col-lg-4">
+          <div class="plan-name-gold">
+            <h2>Mother's Details</h2>
+            <%= f.label :mname,"Name" %>
+<%= f.text_field :mname %>
+<%= f.label :mqualification, "Qualification" %>
+<%= f.text_field :mqualification %>
+
+<%= f.label :moccupation, "Occupation" %>
+<%= f.text_field :moccupation %>
+
+<%= f.label :mincome, "Income" %>
+<%= f.text_field :mincome %>
+
+<%= f.label :mcontactnumber , "Contact Number"%>
+<%= f.text_field :mcontactnumber %>
+
+
+
+<%= f.label :memailid , "Email id"%>
+<%= f.text_field :memailid %>
+</p>
+          </div>
+          
+        </div>
+    </div>
+</div><% end %></body>
+</html>

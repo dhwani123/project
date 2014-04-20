@@ -1,17 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
-  
+  @posts = Post.order("created_at DESC")
 
   def create
     @post = Post.new(post_params)
-
     @post.postedby = current_cubestudent.email
     @post.postedbyid = current_cubestudent.id
-
-    respond_to do |format|
-      if @post.save
-        
+     respond_to do |format|
+      if @post.save        
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
@@ -41,7 +38,7 @@ class PostsController < ApplicationController
     if params[:tag]
      @posts = Post.tagged_with(params[:tag])
     else 
-    @posts = Post.order("created_at DESC").page(params[:page]).per(5)
+    
     @posts = Post.search(params[:search])
   end
 

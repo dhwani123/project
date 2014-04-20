@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328124831) do
+ActiveRecord::Schema.define(version: 20140420085954) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "adminpack"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -55,6 +59,17 @@ ActiveRecord::Schema.define(version: 20140328124831) do
     t.datetime "updated_at"
   end
 
+  create_table "badges_sashes", force: true do |t|
+    t.integer  "badge_id"
+    t.integer  "sash_id"
+    t.boolean  "notified_user", default: false
+    t.datetime "created_at"
+  end
+
+  add_index "badges_sashes", ["badge_id", "sash_id"], name: "index_badges_sashes_on_badge_id_and_sash_id", using: :btree
+  add_index "badges_sashes", ["badge_id"], name: "index_badges_sashes_on_badge_id", using: :btree
+  add_index "badges_sashes", ["sash_id"], name: "index_badges_sashes_on_sash_id", using: :btree
+
   create_table "comments", force: true do |t|
     t.integer  "post_id"
     t.text     "body"
@@ -96,10 +111,8 @@ ActiveRecord::Schema.define(version: 20140328124831) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
+    t.integer  "sash_id"
+    t.integer  "level",                  default: 0
   end
 
   add_index "cubestudents", ["email"], name: "index_cubestudents_on_email", unique: true, using: :btree
@@ -123,32 +136,45 @@ ActiveRecord::Schema.define(version: 20140328124831) do
   add_index "cubeteachers", ["email"], name: "index_cubeteachers_on_email", unique: true, using: :btree
   add_index "cubeteachers", ["reset_password_token"], name: "index_cubeteachers_on_reset_password_token", unique: true, using: :btree
 
-  create_table "cubeusers", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+  create_table "feedbacks", force: true do |t|
+    t.string   "subject"
+    t.text     "message"
+    t.string   "feedemail"
+    t.string   "vote"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "rolable_type"
-    t.integer  "rolable_id"
   end
 
-  add_index "cubeusers", ["email"], name: "index_cubeusers_on_email", unique: true, using: :btree
-  add_index "cubeusers", ["reset_password_token"], name: "index_cubeusers_on_reset_password_token", unique: true, using: :btree
-
-  create_table "pages", force: true do |t|
-    t.string   "title"
-    t.string   "permalink"
-    t.text     "body"
+  create_table "merit_actions", force: true do |t|
+    t.integer  "user_id"
+    t.string   "action_method"
+    t.integer  "action_value"
+    t.boolean  "had_errors",    default: false
+    t.string   "target_model"
+    t.integer  "target_id"
+    t.boolean  "processed",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "merit_activity_logs", force: true do |t|
+    t.integer  "action_id"
+    t.string   "related_change_type"
+    t.integer  "related_change_id"
+    t.string   "description"
+    t.datetime "created_at"
+  end
+
+  create_table "merit_score_points", force: true do |t|
+    t.integer  "score_id"
+    t.integer  "num_points", default: 0
+    t.string   "log"
+    t.datetime "created_at"
+  end
+
+  create_table "merit_scores", force: true do |t|
+    t.integer "sash_id"
+    t.string  "category", default: "default"
   end
 
   create_table "posts", force: true do |t|
@@ -162,6 +188,19 @@ ActiveRecord::Schema.define(version: 20140328124831) do
     t.string   "subject_tokens"
     t.integer  "votes"
   end
+
+  create_table "rates", force: true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
 
   create_table "rs_evaluations", force: true do |t|
     t.string   "reputation_name"
@@ -207,18 +246,23 @@ ActiveRecord::Schema.define(version: 20140328124831) do
   add_index "rs_reputations", ["reputation_name"], name: "index_rs_reputations_on_reputation_name", using: :btree
   add_index "rs_reputations", ["target_id", "target_type"], name: "index_rs_reputations_on_target_id_and_target_type", using: :btree
 
+  create_table "sashes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "studentregs", force: true do |t|
     t.string   "firstname"
     t.string   "middlename"
     t.string   "lastname"
     t.text     "address"
-    t.date     "dateofbirth"
+    t.string   "dateofbirth"
     t.string   "grade"
     t.string   "division"
     t.string   "gender"
     t.string   "contactnumber"
     t.string   "bloodgroup"
-    t.date     "dateofjoining"
+    t.string   "dateofjoining"
     t.string   "fname"
     t.string   "fqualification"
     t.string   "foccupation"
@@ -235,36 +279,6 @@ ActiveRecord::Schema.define(version: 20140328124831) do
     t.datetime "updated_at"
     t.string   "myemail"
     t.string   "avatar"
-    t.integer  "cubestudent_id"
-  end
-
-  add_index "studentregs", ["cubestudent_id"], name: "index_studentregs_on_cubestudent_id", using: :btree
-
-  create_table "students", force: true do |t|
-    t.string   "firstname"
-    t.string   "middlename"
-    t.string   "lastname"
-    t.string   "gender"
-    t.string   "grade"
-    t.string   "division"
-    t.string   "bloodgroup"
-    t.string   "contactnumber"
-    t.text     "address"
-    t.string   "fname"
-    t.string   "fqualification"
-    t.string   "foccupation"
-    t.string   "fcontact"
-    t.string   "fincome"
-    t.string   "femail"
-    t.string   "mname"
-    t.string   "mqualification"
-    t.string   "moccupation"
-    t.string   "mcontact"
-    t.string   "mincome"
-    t.string   "memail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.date     "dateofbirth"
   end
 
   create_table "subjects", force: true do |t|
@@ -287,27 +301,11 @@ ActiveRecord::Schema.define(version: 20140328124831) do
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
 
   create_table "tags", force: true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
-
-  create_table "teachers", force: true do |t|
-    t.string   "firstname"
-    t.string   "middlename"
-    t.string   "lastname"
-    t.string   "gender"
-    t.date     "dateofbirth"
-    t.date     "dateofjoining"
-    t.string   "bloodgroup"
-    t.string   "contact"
-    t.string   "address"
-    t.string   "qualification"
-    t.string   "experience"
-    t.string   "specialization"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "views", force: true do |t|
     t.string   "email",                  default: "", null: false

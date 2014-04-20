@@ -1,29 +1,38 @@
-<p>
+<p style="color:#fff;font-size:18px;">
 <b>Name:</b>
-<%= @studentreg.firstname %> 
+<%= @studentreg.firstname %>      <%= @studentreg.middlename %>         <%= @studentreg.lastname %> 
 </p>
 
-<%= image_tag @studentreg.avatar_url if @studentreg.avatar? %>
+<%if @studentreg.avatar? %>
+<%= image_tag @studentreg.avatar_url , :class => "avatar"%>
+<% else %>
+<%= image_tag "../assets/default_avatar.png" %>
+<% end %>
 
-<p>
-<b>DateOfbirth : </b>
-<%= @studentreg.dateofbirth %>
-</p>
 
-<p>
+
+<p style="color:#fff;font-size:18px;">
 <b>Grade: </b>
 <%= @studentreg.grade %>
 </p>
 
-<p>
+<p style="color:#fff;font-size:18px;">
 <b>Division: </b>
 <%= @studentreg.division %>
 </p>
 
-<p>
+<p style="color:#fff;font-size:18px;">
 <b>Gender: </b>
 <%= @studentreg.gender %>
 </p>
+<p style="color:#fff;font-size:18px;">
+<b>Bloodgroup: </b>
+<%= @studentreg.bloodgroup %>
+</p><p style="color:#fff;font-size:18px;">
+<b>Contact: </b>
+<%= @studentreg.contactnumber %>
+</p>
+
 
 <%= link_to 'Edit', edit_studentreg_path(@studentreg) %> |
 <%= link_to 'Back', studentregs_path %>

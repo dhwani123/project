@@ -1,0 +1,2 @@
+module CubestudentsHelper
+end

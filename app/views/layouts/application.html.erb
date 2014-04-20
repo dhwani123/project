@@ -8,108 +8,157 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script src="../assets/bootstrap.js"></script>
   
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   
-  <%= stylesheet_link_tag 'bootstrap', 'token-input-facebook' %>
-  <%= javascript_include_tag :default, 'jquery.tokeninput' %>
-   
+  <%= stylesheet_link_tag 'bootstrap'%>
+  <%= javascript_include_tag :default %>
+  <script src="assets/jquery.min.js"></script>
+<link rel="stylesheet" href="/assets/style.css">
+   <script type="text/javascript" src="../assets/menu.js"></script>
 </head>
 
 
+ 
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
 <body>
-<header >
-<%= image_tag("students.png",:alt => "CUBE", :width => '200') %><%= image_tag("the-logo.jpg",:alt => "CUBE", :width => '200') %>
-<%= image_tag('scale.gif',:alt => "scale", :width=> '235') %>
-<%= image_tag("quick.gif",:alt => "CUBE", :width => '125', :align => 'right') %>
-</header>
-<a id="menu-toggle" href="#" class="btn btn-info btn-lg toggle"><i class="glyphicon glyphicon-chevron-left"></i></a>
-<div id="sidebar-wrapper">
-  <ul class="sidebar-nav">
-    <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="glyphicon glyphicon-chevron-right"></i></a>
-    <% if cubestudent_signed_in? %>
-    <li class="sidebar-brand">
-      <a> CUBE </a>
-    </li>
-    <li>
-      <a><%= link_to "Question", posts_path %></a>
-    </li>
-    <li>
-      <a><%= link_to "Profile", edit_studentreg_path(current_cubestudent.studentreg) %></a>
-    </li>
-    <li>
-      <a><%= link_to "Sign out", destroy_cubestudent_session_path, method: :delete %></a>
-    </li>
-     <% elsif cubeteacher_signed_in? %>
-    <li>
-      <a><%= link_to "Question", posts_path %></a>
-    </li>
-    <li>
-      <a><%= link_to "Assignment Upload",assignments_path %></a>
-    </li>
-    <li>
-      <a><%= link_to "Sign out", destroy_cubeteacher_session_path, method: :delete %></a>
-    </li>
-<% end %>
-  </ul>
-</div>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-        <a class="btn btn-navbar">
-        <span class="icon-th-list"></span></a>
-               
-        <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-            
-                <li><%= link_to "Home" , root_path %></li>
-                <li><%= link_to "About Us", about_path %></li>
-                <li><%= link_to "Contact Us", contactus_path %></li>
-                <% if cubestudent_signed_in? %>
-                <li><%= current_cubestudent.email %></li>
-                 <% elsif cubeteacher_signed_in? %>
-                 <li><%= current_cubeteacher.email %></li>
-                 <% else %>
-    <li><%= link_to "Sign up", new_cubestudent_registration_path %></li> <li> <%= link_to "sign in", new_cubestudent_session_path %></li>
-  <% end %>
-            </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
+<div class="content" id="home">
+<img src="../assets/logo.png" alt="CUBE" align="center" />
   
+    
+          
+          <% if cubestudent_signed_in? %><div class="header"><div class="wrap"><header id="topnav">
+          
 
+          <nav>
+                <ul>
+                <li class="active">
+                <div class="destacados">
+                <div>
+                <div><img src="../assets/studentprofile.png" alt="welcome" width="145" href="#" class="scroll" />
+                <%= link_to "Profile",studentregs_new_path %></div></div></div> </li>
+                <li><div class="destacados">
+                <div>
+                <div><img src="../assets/students.png" alt="About" width="200"/><%= link_to "Questions", posts_path %>
+                </div></div></div> </li>
+                <li><div class="destacados">
+                <div>
+                <div><img src="../assets/studentassignment.png" alt="Help" width="175"/><%= link_to "Assignments", assignments_path %>
+                </div></div></div></li>
+                <li><div class="destacados">
+                <div>
+                <div><img src="../assets/studentsignout.png" alt="About" width="155"/><%= link_to "Log out", destroy_cubestudent_session_path %>
+                </div></div></div></li>
+                <li><div class="destacados">
+                <div>
+                <div><a><%= current_cubestudent.email %> (<%= current_cubestudent.points %>)</a>
+                </div></div></div></li>  
+                
+                <div class="clear"> </div>
+              </ul>
+              </nav><a href="#" id="navbtn">Nav Menu</a>
+              <div class="clear"> </div>
+            </header></div></div>
+              <% elsif cubeteacher_signed_in? %><div class="wrap"><header id="topnav">
+              <nav>
+                <ul>
+                <li class="active">
+                <div class=" destacados">
+                <div>
+                <div><img src="../assets/teacherprofile.png" alt="welcome" width="145" />
+                <%= link_to "Profile", teacherregs_new_path %></div></div></div> </li>
+                <li><div class="destacados">
+                <div>
+                <div><a><img src="../assets/teacherquestion.png" alt="questions" width="200"/><%=link_to "Questions" , posts_path %></a>
+                </div></div></div> </li>
+                <li><div class="destacados">
+                <div>
+                <div><a><img src="../assets/teacherassign.png" alt="Assignment" width="175"/><%= link_to "Assignments", assignments_path %></a>
+                </div></div></div></li>
+                <li><div class="destacados">
+                <div>
+                <div><a><img src="../assets/teachersignout.png" alt="Signout" width="145"/><%= link_to "Sign Out", destroy_cubeteacher_session_path %></a>
+                </div></div></div></li>
+                <li>
+                <div><a><%= current_cubeteacher.email %> </a>
+                </div></div></div></li>  
+                
+                <div class="clear"> </div>
+              </ul>
+              </nav><a href="#" id="navbtn">Nav Menu</a>
+              <div class="clear"> </div>
+            </header></div></div>
+              <% else %><div class="header"><div class="wrap">
+              <header id="topnav">
+              <nav>
+                <ul>
+                <li class="active">
+                <div class=" destacados">
+                <div>
+                <div><img src="../assets/House Clip Art.gif" alt="welcome" width="145" href="#" class="scroll" />
+                <%= link_to "Home",root_path, :class => "scroll"%></div></div></div> </li>
+                <li><div class="destacados">
+                <div>
+                <div><a href="#team" class="scroll"><img src="../assets/students.png" alt="About" width="200"/><br>About Us</a>
+                </div></div></div> </li>
+                <li><div class="destacados">
+                <div>
+                <div><a href="#ourstory" class="scroll"><img src="../assets/help.png" alt="Help" width="175"/><br>Help</a>
+                </div></div></div></li>
+                <li><div class="destacados">
+                <div>
+                <div><a href="#blog" class="scroll"><img src="../assets/actors.jpg" alt="About" width="185"/><br>Actors</a>
+                </div></div></div></li>
+                <li><div class="destacados">
+                <div>
+                <div><a href="#contact" class="scroll"><img src="../assets/contact.gif" alt="About" width="140"/><br>Contact</a>
+                </div></div></div></li>  
+                
+                <div class="clear"> </div>
+              </ul>
+              </nav><a href="#" id="navbtn">Nav Menu</a>
+              <div class="clear"> </div>
+            </header></div></div>
+               <% end %>
+              
+    
+    </div>
+<div class="container-fluid"><div><%=alert %></div>
+<div class=="notice"><%= notice %></div><%= yield %></div>
+<div class="footer">
+          <div class="wrap">
+             <div class="footer-con">
 
-</ul>
+                <div class="footer-right">
+                  <ul>
+                    <li class="active"><a href="#home" class="scroll">Home</a></li>
+                    <li><a href="#team" class="scroll">About Us</a></li>
+                    <li><a href="#ourstory" class="scroll">Help</a></li>
+                    <li><a href="#blog" class="scroll">Actors of this Application</a></li>
+                    <li><a href="#contact" class="scroll">Contact</a></li>                
+                    <div class="clear"> </div>
+                  </ul>
+                </div>
+                  <div class="footer-left">
+                    <p> 2014 &#169; by <a href="#">BoTree Consulting</a></p>
 
-<div class="container-fluid"><div class="span15 well ">
-<%= yield %></div></div>
-
-<div class="container">
-    <div class="row-fluid">
-        <div class="span4">
-            <p>&copy; 2014 BotreeConsulting</p>
-        </div>
-        <div class="span4 text-center">
-            <ul class="nav inline">
-                <li><%= link_to "About Us", about_path, :class => "btn btn-label btn-inverse" %></li>
-                <li><%= link_to "Contact Us", contactus_path,:class =>"btn btn-label btn-inverse"%></li>
-                <li><%= link_to "Privacy Policy",root_path, :class => "btn btn-label btn-inverse"%></li>
-            </ul>
+                  </div>                
+                <div class="clear"> </div>
+            </div>
+            
+          </div>
+        
         </div>
         
-    </div>
-</div>
-<script>
-  $("#menu-close").click(function(e) {
-    e.preventDefault();
-    $("#sidebar-wrapper").toggleClass("active");
-  });
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#sidebar-wrapper").toggleClass("active");
-  });
-</script>
-</body>
+          
+          
+        </body>
 </html>
+ 

@@ -7,14 +7,216 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+
+ .message-item {
+margin-bottom: 25px;
+margin-left: 40px;
+position: relative;
+}
+.message-item .message-inner {
+background: rgb(126,126,126,20);
+border: 1px solid #ddd;
+border-radius: 3px;
+padding: 10px;
+position: relative;
+}
+.message-item .message-inner:before {
+border-right: 10px solid #ddd;
+border-style: solid;
+border-width: 10px;
+color: rgba(0,0,0,0);
+content: "";
+display: block;
+height: 0;
+position: absolute;
+left: -20px;
+top: 6px;
+width: 0;
+}
+.message-item .message-inner:after {
+border-right: 10px solid #fff;
+border-style: solid;
+border-width: 10px;
+color: rgba(0,0,0,0);
+content: "";
+display: block;
+height: 0;
+position: absolute;
+left: -18px;
+top: 6px;
+width: 0;
+}
+.message-item:before {
+background: #fff;
+border-radius: 2px;
+bottom: -30px;
+box-shadow: 0 0 3px rgba(0,0,0,0.2);
+content: "";
+height: 100%;
+left: -30px;
+position: absolute;
+width: 3px;
+}
+
+.message-item:after {
+background: #fff;
+
+border-radius: 50%;
+box-shadow: 0 0 5px rgba(0,0,0,0.1);
+content: "";
+height: 15px;
+left: -40px;
+position: absolute;
+top: 10px;
+width: 25px;
+height: 25px;
+}
+.clearfix:before, .clearfix:after {
+content: " ";
+display: table;
+}
+.message-item .message-head {
+border-bottom: 1px solid #eee;
+margin-bottom: 8px;
+padding-bottom: 8px;
+}
+.message-item .message-head .avatar {
+margin-right: 20px;
+}
+.message-item .message-head .user-detail {
+overflow: hidden;
+}
+.message-item .message-head .user-detail h5 {
+font-size: 18px;
+font-weight: bold;
+color: #fff;
+margin: 0;
+}
+.message-item .message-head .post-meta {
+float: left;
+padding: 0 15px 0 0;
+}
+.message-item .message-head .post-meta >div {
+color: #333;
+font-weight: bold;
+text-align: right;
+}
+.post-meta > div {
+color: #777;
+font-size: 12px;
+line-height: 22px;
+}
+.message-item .message-head .post-meta >div {
+color: #333;
+font-weight: bold;
+text-align: right;
+}
+.post-meta > div {
+color: #777;
+font-size: 12px;
+line-height: 22px;
+}
+/*profile*/
+ //Reusing bootstrap 3 panel CSS
+.panel {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}   
+
+.panel-primary {
+    border-color: #428BCA;
+}   
+
+.panel-primary > .panel-heading {
+    background-color: #428BCA;
+    border-color: #428BCA;
+    color: #FFFFFF;
+}   
+
+.panel-heading {
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 10px 15px;
+}   
+
+.panel-title {
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-top: 0;
+}   
+
+.panel-body:before, .panel-body:after {
+    content: " ";
+    display: table;
+}   
+
+.panel-body:before, .panel-body:after {
+    content: " ";
+    display: table;
+}   
+
+.panel-body:after {
+    clear: both;
+}   
+
+.panel-body {
+    padding: 15px;
+}   
+
+.panel-footer {
+    background-color: #F5F5F5;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top: 1px solid #DDDDDD;
+    padding: 10px 15px;
+}
+
+//CSS from v3 snipp
+.user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+/* profile over */
+
  {
   background-color: LightBlue;
  }
    #sidebar-wrapper {
     margin-right: -250px;
     right: 0;
+    top:200px;
     width: 250px;
-    background: rgb(0,0,0);
+    background: #008b8b;
     position: fixed;
     height: 100%;
     overflow-y: auto;
@@ -41,7 +243,7 @@
   }
 
   .sidebar-nav li a {
-    color: #999999;
+    color: #fff;
     display: block;
     text-decoration: none;
   }
@@ -63,7 +265,7 @@
   }
 
   .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #fff;
   }
 
   .sidebar-nav > .sidebar-brand a:hover {
@@ -72,7 +274,7 @@
   }
 
   #menu-toggle {
-    top: 150px;
+    top: 200px;
     right: 0;
     position: fixed;
     z-index: 1;
@@ -110,29 +312,38 @@ color: #FFF;
 .h1 small {
 font-size: 24px;
 }
+.signin
+{
+  position:relative;
+  left:10px;
+  float: left;
+  top:100px;
+
+}
  .destacados{
-    padding: 20px 0;
+  
   text-align: center;
 }
 .destacados > div > div{
-  padding: 10px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  
+  border: transparent;
+  border-radius: 120px;
   transition: 0.2s;
 }
 .destacados > div:hover > div{
   margin-top: -10px;
-  border: 1px solid rgb(200, 200, 200);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 2px;
-  background: rgba(200, 200, 200, 0.1);
+  border:  rgb(200, 200, 200);
+  box-shadow: rgba(0, 0, 0) 0px 5px 5px 2px;
+  background: rgba(200, 200, 200);
   transition: 0.5s;
 }
 #tag_cloud {
+
   width: 400px;
   line-height: 1.6em;
   .s { font-size: 0.8em; }
   .m { font-size: 1.2em; }
-  .l { font-size: 1.8em; }
+  .l { font-size: 1.8em; color:#fff; }
 
 }
  .pic
@@ -179,15 +390,17 @@ font-size: 24px;
 #navigation1 ul li a:hover,
 #navigation1 ul li.selected a{
     background:#d8d8d8;
-    color:#666;
+    color:#000;
     text-shadow:1px 1px 1px #fff;
 }
 .step{
+  vertical-align: center;
     float:left;
-    width:600px;
+    width:750px;
   height:360px;
 }
 #wrapper{
+  top:250px;
     -moz-box-shadow:0px 0px 3px #aaa;
     -webkit-box-shadow:0px 0px 3px #aaa;
     box-shadow:0px 0px 3px #aaa;
@@ -195,18 +408,19 @@ font-size: 24px;
     -webkit-border-radius:10px;
     border-radius:10px;
     border:2px solid #fff;
-    background-color:#f9f9f9;
-    width:675px;
+    background-color:rgb(126,126,126,20);
+    width:100%;
     overflow:hidden;
 }
 #steps{
-    width:600px;
-  height:320px;
+    width:750px;
+    height:320px;
     overflow:hidden;
 }
 #navigation1{
+  width:auto;
     height:45px;
-    background-color:#b0c4de;
+    position: relative;
     border-top:1px solid #fff;
     -moz-border-radius:0px 0px 10px 10px;
     -webkit-border-bottom-left-radius:10px;
@@ -215,20 +429,22 @@ font-size: 24px;
     border-bottom-right-radius:10px;
 }
 #navigation1 ul{
-    list-style:none;
+  list-style:none;
   float:left;
   margin-left:12px;
 }
 #navigation1 ul li a{
+  position: relative;
     display:block;
     height:45px;
     background-color:#444;
     color:#777;
+    width:100%;
     outline:none;
     font-weight:bold;
     text-decoration:none;
     line-height:45px;
-    padding:0px 8px;
+    padding:0px 28px;
     border-right:1px solid #fff;
     border-left:1px solid #fff;
     background:#0099cc;
@@ -254,17 +470,17 @@ font-size: 24px;
     border-right:1px solid #ccc;
     border-left:1px solid #ccc;
     position:relative;
-  margin:0px 2px;
+  margin:0px 24px 0px 24px;
 }
 #steps form fieldset{
     border:none;
     padding-bottom:20px;
 }
 #steps form legend{
-    text-align:left;
+    text-align:center;
     background-color:#f0f0f0;
     color:#666;
-    font-size:24px;
+    font-size:20px;
     text-shadow:1px 1px 1px #fff;
     font-weight:bold;
     float:left;
@@ -280,7 +496,7 @@ font-size: 24px;
     margin:5px 0px;
     background-color:#f4f4f4;
     border:1px solid #fff;
-    width:400px;
+    width:425px;
     padding:5px;
     margin-left:100px;
     -moz-border-radius: 5px;
@@ -325,6 +541,7 @@ font-size: 24px;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
     box-shadow:none;
+    color: #000;
 }
 #steps form button {
   border:none;
@@ -332,7 +549,7 @@ font-size: 24px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    color: #ffffff;
+    
     display: block;
     cursor:pointer;
     margin: 0px auto;
@@ -401,7 +618,6 @@ header {
   display: block;
   align: center;
   height: 110px;
-  background: #ffffff;
   position: auto;
   z-index: 10;
 }
@@ -469,7 +685,7 @@ input,
 select,
 textarea {
   margin: 0;
-  font-size: 100%;
+  font-size: 75%;
   vertical-align: middle;
 }
 
@@ -502,6 +718,7 @@ input[type="submit"],
 input[type="radio"],
 input[type="checkbox"] {
   cursor: pointer;
+  color: #fff;
 }
 
 input[type="search"] {
@@ -530,7 +747,7 @@ textarea {
   }
   a,
   a:visited {
-    text-decoration: underline;
+    text-decoration:none;
   }
   a[href]:after {
     content: " (" attr(href) ")";
@@ -553,6 +770,7 @@ textarea {
   }
   tr,
   img {
+    top: 150px;
     page-break-inside: avoid;
   }
   img {
@@ -573,24 +791,18 @@ textarea {
   }
 }
 
-body {
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  background-color: DarkCyan;
-}
+ 
 
 a {
-  color: #0088cc;
+  color: #fff;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #005580;
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 50;
 }
 
 .img-rounded {
@@ -616,7 +828,9 @@ a:focus {
 }
 
 .row {
-  margin-left: -20px;
+  background-color: rgb(126,126,126,20);
+padding: 20px 50px 20px 50px;
+  margin-right: 100px;
   *zoom: 1;
 }
 
@@ -637,10 +851,13 @@ a:focus {
   margin-left: 20px;
 }
 
-.container,
+.container{
+  width: auto;
+}
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
+
   width: 800px;
 }
 
@@ -985,6 +1202,7 @@ a:focus {
 }
 
 .container-fluid {
+  position: relative;
    
   padding-right: 20px;
   padding-left: 20px;
@@ -1097,8 +1315,8 @@ h6 {
   margin: 10px 0;
   font-family: inherit;
   font-weight: bold;
-  line-height: 20px;
-  color: inherit;
+  line-height: 10px;
+  color: #ffffff;
   text-rendering: optimizelegibility;
 }
 
@@ -1120,7 +1338,7 @@ h3 {
 }
 
 h1 {
-  font-size: 38.5px;
+  font-size: 40.5px;
 }
 
 h2 {
@@ -1161,8 +1379,9 @@ h4 small {
 
 .page-header {
   padding-bottom: 9px;
-  margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;
+  margin: 20px 0 ;
+  border-bottom: 1px solid #ffffff;
+  text-align: center;
 }
 
 ul,
@@ -1395,10 +1614,10 @@ legend {
   width: 100%;
   padding: 0;
   margin-bottom: 20px;
-  font-size: 21px;
-  line-height: 40px;
-  color: #333333;
-  border: 0;
+  font-size: 20px;
+  line-height: inherit;
+  color: #7f7f7f;
+  border: medium none;
   border-bottom: 1px solid #e5e5e5;
 }
 
@@ -1412,7 +1631,7 @@ input,
 button,
 select,
 textarea {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: normal;
   line-height: 20px;
 }
@@ -1428,7 +1647,11 @@ label {
   display: block;
   margin-bottom: 5px;
 }
+.avatar{
+  border-radius: 110%;
+  width: 150px;
 
+}
 select,
 textarea,
 input[type="text"],
@@ -1446,12 +1669,13 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-  display: inline-block;
-  height: 20px;
+  width:206px;
+  display: block;
+  height: 28px;
   padding: 4px 6px;
   margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height:20px;
   color: #555555;
   vertical-align: middle;
   -webkit-border-radius: 4px;
@@ -1990,6 +2214,14 @@ select:focus:invalid:focus {
   border-top: 1px solid #e5e5e5;
   *zoom: 1;
 }
+.form-control {
+    border: 1px solid #D6D6D6;
+    border-radius: 0;
+    box-shadow: none;
+    height: 50px;
+    padding: 6px 15px;
+}
+
 
 .form-actions:before,
 .form-actions:after {
@@ -2002,7 +2234,7 @@ select:focus:invalid:focus {
   clear: both;
 }
 
-.help-block,
+.help-block
 .help-inline {
   color: #595959;
 }
@@ -2415,7 +2647,7 @@ table {
 .table-bordered td {
   border-left: 1px solid #dddddd;
 }
-body { margin-top:30px; }
+body { margin-top:30px; background:url(../assets/bodybg.jpg);}
 hr.message-inner-separator
 {
     clear: both;
@@ -2508,7 +2740,7 @@ hr.message-inner-separator
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: #f9f9f9;
+ color:#fff;
 }
 
 .table-hover tbody tr:hover > td,
@@ -3566,7 +3798,7 @@ button.close {
 .btn {
   display: inline-block;
   *display: inline;
-  padding: 4px 12px;
+  padding: 10px;
   margin-bottom: 0;
   *margin-left: .3em;
   font-size: 14px;
@@ -3982,7 +4214,7 @@ input[type="submit"].btn.btn-mini {
 .btn-link:hover,
 .btn-link:focus {
   color: #005580;
-  text-decoration: underline;
+  text-decoration: none;
   background-color: transparent;
 }
 

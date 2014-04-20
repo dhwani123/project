@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+  before_filter :authenticate_cubeteacher!, except: [:index]
   def index
   	@assignments = Assignment.all
   end

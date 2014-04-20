@@ -41,26 +41,30 @@ $(function(){
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
 <%= render :partial => @post %>
-<%= link_to 'Back', posts_path , :class => "btn btn-warning"%>
-<h5 id="timeline">Comments</h5>
-		<div>
+<i class="pull-right">
+<%= link_to 'Back', posts_path , :class => "btn btn-warning "%></i>
+
+		<div class="container">
+    <div class="page-header">
+<h1 id="timeline">Comments</h1>
+</div>
 			<%= render :partial => @post.comments %>
 		</div>
 	
 	<div class="row" style="margin-top:40px;">
 		<div class="col-md-6">
-    	<div class="well well-sm">
-            <div class="text-right">
+    	<div class="well ">
+            <div class="text-left">
                 <a class="btn btn-inverse" href="#reviews-anchor" id="open-review-box"><span class= "glyphicon glyphicon-pencil"></span>   Give your answer </a>
             </div>
         
             <div class="row" id="post-review-box" style="display:none;">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <%= form_for [@post, Comment.new] do |f| %>
 			
  					<%= f.text_area :body , :placeholder => "Write your answer", :id => 'new-review', :class => 'form-control animated'%>
- 					<h6 class="pull-right" id="counter">320 characters remaining</h6><p>
- 					 <%= f.submit "Add answer", :class => "btn btn-success btn-lg"%>
+ 					<h6 id="counter">320 characters remaining</h6><p>
+ 					 <%= f.submit "Add answer", :class => "btn btn-success"%>
  				 <span id ="close-review-box"><%= link_to posts_show_path , :class => "btn btn-danger btn-sm",  remote: true  do %>
  				 	<span class="glyphicon glyphicon-remove"></span> Cancel <% end %></span></p>
 

@@ -1,0 +1,25 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span5"><table style="background-color:#fff;" class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th >Name</th>
+      <th >points</th>
+      
+  </tr>
+  </thead>
+  <tbody >
+  
+    <% @cubestudents.each do |cubestudent| %>
+      <tr>
+        <td><%= cubestudent.email %></td>
+        <td><%= cubestudent.points %></td>
+             
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+

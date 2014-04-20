@@ -1,48 +1,67 @@
-<div class = "container">
 
-<div class="col-md-12"><h4><%= link_to_unless_current post.title, post %></h4>
-<h4><%= simple_format post.body %></h4>
-<span class = "badge"> Created : <%= post.created_at.strftime("%d/%m/%Y") %> by <%= post.postedby %></span>
-<div>
-<div > Tags : <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></div>
 
-</p>
-<% if cubestudent_signed_in? %>
-	<% if current_cubestudent.email == post.postedby %>
-			<div class="pull-right"><%= link_to edit_post_path(post), :class => "btn btn-info btn-xs", remote: true do %> 
-			<span class="glyphicon glyphicon-edit"></span> Edit <% end %>
-			<%= link_to post, :confirm => "are you sure?", method: :delete, :class => "btn btn-danger btn-xs", remote: true do %>
-			<i class="glyphicon glyphicon-trash"></i> Delete 
-			<% end %>
-		</div>
-	<% end %>
-<% elsif cubeteacher_signed_in? %>
+    <div class="qa-message-list" id="wallmessages">
+    				<div class="message-item">
+						<div class="message-inner">
+							<div class="message-head clearfix">
+								<div class="avatar"><a href="./index.php?qa=user&qa_1=Oleg+Kolesnichenko"><img src="../assets/default_avatar.png"></a></div>
+								<div class="user-detail">
+									<h5 class="handle" style="font-transform:bold;"><%= link_to_unless_current post.title, post %></h5>
+									<div class="post-meta">
+										<div class="asker-meta">
+											<span class="qa-message-what"></span>
+											<span class="qa-message-when">
+												<span class="qa-message-when-data" style="color:#fff;"><%= time_ago_in_words(post.created_at) %></span>
+											</span>
+											<span class="qa-message-who">
+												<span class="qa-message-who-pad" style="color:#fff;">by </span>
+												<span class="qa-message-who-data"><a href="./index.php?qa=user&qa_1=Oleg+Kolesnichenko"><%= post.postedby %></a></span>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="qa-message-content" style="color:#fff;">
+							<p>Tags : <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+							<p><%= simple_format post.body %>
+		
+		
+
+		
+				<% if cubestudent_signed_in? %>
+					<% if current_cubestudent.email == post.postedby %>
+						<p class="pull right"><%= link_to edit_post_path(post), :class => "btn btn-info btn-xs", remote: true do %> 
+							<span class="glyphicon glyphicon-edit"></span> Edit <% end %>
+							<%= link_to post, method: :delete, :class => "btn btn-danger btn-xs", remote: true do %>
+								<i class="glyphicon glyphicon-trash"></i> Delete 
+								<% end %>
+						</p>
+					<% end %>
+				<% elsif cubeteacher_signed_in? %>
 	
-<% end %>
+				<% end %>
+
+					<i class="btn btn-inverse"><%= pluralize post.reputation_for(:votes).to_i, "vote" %></i>
+  						<% if current_cubestudent && !current_cubestudent.voted_for?(post) %>
+								<%= link_to vote_post_path(post.id, type: "up"), method: "post", class: "btn btn-label btn-success", remote: true do %>
+ 											<i class="glyphicon glyphicon-thumbs-up"></i> Up
+											<% end %>
+
+								<%= link_to vote_post_path(post.id, type: "down"), method: "post", class: "btn btn-label btn-danger", remote: true do %>
+										<i class="glyphicon glyphicon-thumbs-down"></i> Down
+										<% end %>
+						<% else %>
+									<% if cubestudent_signed_in? %>
+
+											You have Voted
+									<% elsif cubeteacher_signed_in? %>
+										You can rate answer 
+									<% end %>
 
 
+						<% end %>
+  </p>
 
- <%= pluralize post.reputation_for(:votes).to_i, "vote" %>
-  <% if current_cubestudent && !current_cubestudent.voted_for?(post) %>
-<%= link_to vote_post_path(post.id, type: "up"), method: "post", class: "btn btn-label btn-success", remote: true do %>
- <i class="glyphicon glyphicon-thumbs-up"></i> Up
-<% end %>
-
-<%= link_to vote_post_path(post.id, type: "down"), method: "post", class: "btn btn-label btn-danger", remote: true do %>
-<i class="glyphicon glyphicon-thumbs-down"></i> Down
-<% end %>
-<% else %>
-<% if cubestudent_signed_in? %>
-
-You have already Voted
-<% elsif cubeteacher_signed_in? %>
-You can rate answer 
-<% end %>
-
-
-<% end %>
-  </em>
-  </div>
-  </div>
-  </div>
-
+							</div>
+					</div></div>
+				</div>

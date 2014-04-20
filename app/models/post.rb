@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
 	belongs_to :cubeteacher
     
 	attr_accessible :body, :title, :tag_list
-	validates_presence_of :body, :title
+	validates_presence_of :body, :title, :tag_list
 	   
    
 	
@@ -16,21 +16,11 @@ class Post < ActiveRecord::Base
 		if search
       			where 'title LIKE ? OR body LIKE ? ', "%#{search}%", "%#{search}%"
       	else
-   				scoped
+   				all
  		end
  	end
 
- 	def self.tokens(query)
- 		tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{query}")
- 		if tags.empty?
- 			[{id: "#{query}", name: "Add new tag: \"#{query}\""}]
- 		else
- 			tags
- 		end
- 	end
-
- 	def tag_list_tokens=(ids)
- 		self.tag_ids = ids.split(",")
- 	end
  	
+
+ 	 	
 end

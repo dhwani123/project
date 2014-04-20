@@ -1,10 +1,18 @@
 
+<div class="container">
+<ul class="timeline">
 <%= div_for comment do |f| %>
-<h4 class= "container"><%= comment.body %></h4>
+<li>
+<div class="timeline-panel">
+<div class="timeline-body" style="color:#fff"><p><%= comment.body %></p>
 
-<span class = "badge" align="right"><%= time_ago_in_words(comment.created_at) %> ago by <%= comment.postedby %></span>
+<span class = "badge"><%= time_ago_in_words(comment.created_at) %> ago by <%= comment.postedby %></span>
 
-<%= link_to "Upvote", like_post_comment_path(@post,comment), method: :put %>
-<%= link_to "Downvote", dislike_post_comment_path(@post,comment), method: :put %>
-
+<p><%= link_to "Upvote ", like_post_comment_path(@post,comment), method: :post %>
+<%= link_to " Downvote", dislike_post_comment_path(@post,comment), method: :post %></p></div>
+</div></li>
 <% end %>
+</ul>
+</div>
+
+
