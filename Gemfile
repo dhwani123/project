@@ -18,7 +18,7 @@ gem 'merit'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-
+gem 'rails_12factor', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
