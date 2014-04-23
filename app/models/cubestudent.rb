@@ -2,9 +2,9 @@ class Cubestudent < ActiveRecord::Base
   has_merit
 
   # Include default devise modules. Others available are:
-  #  :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,:confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,:lockable,:confirmable,
   attr_accessible :email, :password, :password_confirmation
   acts_as_tagger
    has_one :studentreg, :dependent => :destroy
