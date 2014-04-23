@@ -73,7 +73,7 @@ config.action_mailer.perform_deliveries = true
 
 config.active_support.deprecation = :silence
   config.i18n.fallbacks = true
-  config.action_mailer.default_url_options = { :host => 'http://fast-waters-2957.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'http://infinite-hamlet-7462.herokuapp.com/' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
