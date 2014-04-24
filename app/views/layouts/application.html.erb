@@ -1,42 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script src="../assets/bootstrap.js"></script>
-  
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-  
   <%= stylesheet_link_tag 'bootstrap'%>
   <%= javascript_include_tag :default %>
   <script src="assets/jquery.min.js"></script>
 <link rel="stylesheet" href="/assets/style.css">
    <script type="text/javascript" src="../assets/menu.js"></script>
 </head>
-
-
- 
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-
 <body>
 <div class="content" id="home">
 <img src="../assets/logo.png" alt="CUBE" align="center" />
-  
-    
-          
-          <% if cubestudent_signed_in? %><div class="header"><div class="wrap"><header id="topnav">
-          
-
+  <% if cubestudent_signed_in? %><div class="header"><div class="wrap"><header id="topnav">
           <nav>
                 <ul>
                 <li class="active">
@@ -60,7 +41,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div>
                 <div><a><%= current_cubestudent.email %> (<%= current_cubestudent.points %>)</a>
                 </div></div></div></li>  
-                
                 <div class="clear"> </div>
               </ul>
               </nav><a href="#" id="navbtn">Nav Menu</a>
@@ -89,7 +69,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <li>
                 <div><a><%= current_cubeteacher.email %> </a>
                 </div></div></div></li>  
-                
                 <div class="clear"> </div>
               </ul>
               </nav><a href="#" id="navbtn">Nav Menu</a>
@@ -120,23 +99,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div>
                 <div><a href="#contact" class="scroll"><img src="../assets/contact.gif" alt="About" width="140"/><br>Contact</a>
                 </div></div></div></li>  
-                
                 <div class="clear"> </div>
               </ul>
               </nav><a href="#" id="navbtn">Nav Menu</a>
               <div class="clear"> </div>
             </header></div></div>
                <% end %>
-              
-    
-    </div>
+              </div>
 <div class="container-fluid"><div><%=alert %></div>
 <div class=="notice"><%= notice %></div><%= yield %></div>
 <div class="footer">
           <div class="wrap">
              <div class="footer-con">
-
-                <div class="footer-right">
+            <div class="footer-right">
                   <ul>
                     <li class="active"><a href="#home" class="scroll">Home</a></li>
                     <li><a href="#team" class="scroll">About Us</a></li>
@@ -147,18 +122,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                   </ul>
                 </div>
                   <div class="footer-left">
-                    <p> 2014 &#169; by <a href="#">BoTree Consulting</a></p>
-
-                  </div>                
+                    <p> 2014 &#169; by <a href="#">BoTree Consulting</a></p></div>                
                 <div class="clear"> </div>
             </div>
-            
-          </div>
-        
+            </div>
         </div>
-        
-          
-          
-        </body>
+</body>
 </html>
  
