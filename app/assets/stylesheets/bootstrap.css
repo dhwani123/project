@@ -14,7 +14,7 @@ margin-left: 40px;
 position: relative;
 }
 .message-item .message-inner {
-background-color: rgba(126,126,126,20);
+background-color: rgba(126,126,126,0.20);
 border: 1px solid #ddd;
 border-radius: 3px;
 padding: 10px;
@@ -382,7 +382,7 @@ font-size: 24px;
     -webkit-border-radius:10px;
     border-radius:10px;
     border:2px solid #fff;
-    background-color:rgba(126,126,126,20);
+    background-color:rgba(126,126,126,0.2);
     width:100%;
     overflow:hidden;
 }
@@ -802,7 +802,7 @@ a:focus {
 }
 
 .row {
-  background-color: rgba(126,126,126,20);
+  background-color: rgba(126,126,126,0.20);
 padding: 20px 50px 20px 50px;
   margin-right: 100px;
   *zoom: 1;
