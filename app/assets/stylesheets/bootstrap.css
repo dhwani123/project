@@ -307,8 +307,8 @@ font-size: 24px;
 .destacados > div:hover > div{
   margin-top: -10px;
   border:  rgb(200, 200, 200);
-  box-shadow: rgba(0, 0, 0) 0px 5px 5px 2px;
-  background: rgba(200, 200, 200);
+  box-shadow: #ffffff;
+  background: rgba(200, 200, 200, 0.5);
   transition: 0.5s;
 }
 #tag_cloud {
